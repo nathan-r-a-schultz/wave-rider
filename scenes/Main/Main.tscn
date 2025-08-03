@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhm3ap26ad055"]
 
-[ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://jetski.gd" id="1_glv2v"]
-[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="1_uu6xs"]
-[ext_resource type="Script" uid="uid://bfmaa2o8jtjaf" path="res://texture_rect.gd" id="2_r0du0"]
-[ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="1_brr1f"]
+[ext_resource type="Script" uid="uid://bfmaa2o8jtjaf" path="res://scenes/Main/texture_rect.gd" id="2_pkilc"]
+[ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
+[ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_q8kdv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_fos0i"]
-diffuse_texture = ExtResource("4_cm0pq")
+diffuse_texture = ExtResource("4_q8kdv")
 
 [node name="Main" type="Node2D"]
 
@@ -18,13 +18,13 @@ texture_filter = 1
 offset_top = 322.0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("1_uu6xs")
+texture = ExtResource("1_brr1f")
 stretch_mode = 1
-script = ExtResource("2_r0du0")
+script = ExtResource("2_pkilc")
 
 [node name="Jetski" type="CharacterBody2D" parent="."]
 position = Vector2(255, 254)
-script = ExtResource("1_glv2v")
+script = ExtResource("3_d463r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Jetski"]
 texture_filter = 1

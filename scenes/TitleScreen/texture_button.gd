@@ -1,10 +1,9 @@
 extends TextureButton
 
-# Path to your main game scene
-@export var game_scene_path: String = "res://main.tscn"
+@export var game_scene_path: String = "res://scenes/Main/main.tscn"
 
 func _ready():
-	#cConnect this button's pressed signal to our function
+	#connect this button's pressed signal to our function
 	pressed.connect(_on_start_button_pressed)
 
 func _on_start_button_pressed():
