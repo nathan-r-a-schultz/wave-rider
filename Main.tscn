@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhm3ap26ad055"]
+
+[ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://jetski.gd" id="1_glv2v"]
+[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="1_uu6xs"]
+[ext_resource type="Script" uid="uid://bfmaa2o8jtjaf" path="res://texture_rect.gd" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_cm0pq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fos0i"]
+diffuse_texture = ExtResource("4_cm0pq")
+
+[node name="Main" type="Node2D"]
+
+[node name="Water" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Water"]
+z_index = 1
+texture_filter = 1
+offset_top = 322.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_uu6xs")
+stretch_mode = 1
+script = ExtResource("2_r0du0")
+
+[node name="Jetski" type="CharacterBody2D" parent="."]
+position = Vector2(255, 254)
+script = ExtResource("1_glv2v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jetski"]
+texture_filter = 1
+position = Vector2(21, 10.5)
+scale = Vector2(4, 4)
+texture = SubResource("CanvasTexture_fos0i")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+z_index = -1
+offset_right = 1152.0
+offset_bottom = 648.0
+expand_mode = 1

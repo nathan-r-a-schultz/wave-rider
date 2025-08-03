@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://donqam037r4xd"]
+
+[ext_resource type="Script" uid="uid://bccgcu5ill8o6" path="res://texture_button.gd" id="1_fnlyl"]
+[ext_resource type="Texture2D" uid="uid://dt7oaoy07ra3u" path="res://assets/startbutton.png" id="1_pkhjh"]
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 467.0
+offset_top = 297.0
+offset_right = 595.0
+offset_bottom = 425.0
+texture_normal = ExtResource("1_pkhjh")
+stretch_mode = 0
+script = ExtResource("1_fnlyl")
