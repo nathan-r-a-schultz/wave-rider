@@ -71,7 +71,7 @@ offset_bottom = 648.0
 expand_mode = 1
 
 [node name="Coins" type="Area2D" parent="." groups=["collectibles"]]
-position = Vector2(269, 207)
+position = Vector2(715, 288)
 script = ExtResource("7_exyxu")
 
 [node name="TextureRect" type="TextureRect" parent="Coins"]

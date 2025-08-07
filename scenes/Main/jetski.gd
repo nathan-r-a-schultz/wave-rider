@@ -8,14 +8,17 @@ extends CharacterBody2D
 
 var is_pressed: bool = false
 
+# the init function
 func _ready():
 	# set initial position above water
 	global_position.y = water_level - 50
 
+# handles input
 func _input(event):
 	if event is InputEventScreenTouch or event is InputEventMouseButton:
 		is_pressed = event.pressed
 
+# physics yuh
 func _physics_process(delta):
 	var current_water_level = get_viewport().size.y - water_level
 	
@@ -45,8 +48,45 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+# BUNCH OF UNUSED CODE BELOW
+# KEEPING IT IN HERE FOR NOW CAUSE I'M STILL LEARNING GODOT AND WANT TO SAVE IT
+	
+	#handle_movement_collisions()
+	
+# I LOVE HIT DETECTION I LOVE HIT DETECTION I LOVE HIT DETECTION
+#func handle_movement_collisions():
+	#
+	## check if something has collided
+	#for i in get_slide_collision_count():
+		#var collision = get_slide_collision(i)
+		#var collider = collision.get_collider()
+		#
+		#if collider:
+			#print("collision with: ", collider.name)
+			#handle_physics_collision(collision, collider)
+			#
+#
+#
+
+# handles collision between two objects
+# this function is called by handle_movement_collision
+# this function orchestrates what should happen when colliding with something
+#func handle_physics_collision(collision, collider):
+	#
+	## get the collision details
+	## ngl i don't need either pieces of this info yet but it's good to retrieve it
+	#var _collision_point = collision.get_position()
+	#var _collision_normal = collision.get_normal()
+	#
+	#if collider.is_in_group("obstacles"):
+		#print("you should be dead (if game overs were implemented yet)")
+	#elif collider.is_in_group("collectibles"):
+		#print("pick it up and delete the collectable")
+	
 
 # commenting this out cause it doesn't fully work :(
+# going to remove it next commit.
+# just wanna keep it in the repo a little longer
 
 #func checkIfSplashing():
 	#
