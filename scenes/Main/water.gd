@@ -22,6 +22,7 @@ func setupScrollingWaterRects():
 		textureRect.texture = preload("res://assets/water.png")
 		textureRect.stretch_mode = TextureRect.STRETCH_TILE
 		textureRect.size = Vector2(screenWidth, waterHeight)
+		textureRect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		textureRect.position.x = i * screenWidth
 		
 		waterRects.append(textureRect)
