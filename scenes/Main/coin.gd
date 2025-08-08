@@ -6,5 +6,4 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Jetski":
-		print("Jetski collected coin!")
 		queue_free()
