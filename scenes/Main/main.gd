@@ -1,6 +1,8 @@
 extends Node2D
 var coinGenerator: CoinGroups
 
+@export var collectedCoins := 0
+
 func _ready():
 	coinGenerator = CoinGroups.new()
 	add_child(coinGenerator)
@@ -14,6 +16,9 @@ func _ready():
 	
 func _on_spawn_timer_timeout():
 	coinGenerator.spawnCoins()
+	
+func getCollectectedCoins() -> int:
+	return collectedCoins
 
 #func _process(_delta):
 	## Example: spawn coins when jetski moves forward

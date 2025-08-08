@@ -11,6 +11,8 @@ class_name CoinGroups
 # 0
 var coinGroups: Array[Array] = [
 	[[0, 1, 0], [1, 1, 1], [0, 1, 0]],
+	[[0, 1, 1, 1, 0, ], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0]],
+	[[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [1, 1, 1, 1, 1]]
 	]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var coinSize: Vector2
