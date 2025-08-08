@@ -40,7 +40,7 @@ func spawnCoins():
 	# note: remove the underscores eventually. it's just to prevent warnings
 	var selection: int = rng.randi_range(0, coinGroups.size() - 1)
 	var coinPattern: Array = coinGroups[selection]
-	var yPosition: int = 200 # hardcoded for testing
+	var yPosition: int = rng.randi_range(0, get_viewport().size.y) # spawn at a random y coord
 	
 	# n^2 runtime but i'm never going to make a crazy complex coin pattern so it's okay
 	for rowIndex in range(coinPattern.size()):
