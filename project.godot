@@ -13,6 +13,7 @@ config_version=5
 config/name="Wave Rider"
 run/main_scene="uid://donqam037r4xd"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [dotnet]
@@ -22,3 +23,4 @@ project/assembly_name="Wave Rider"
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

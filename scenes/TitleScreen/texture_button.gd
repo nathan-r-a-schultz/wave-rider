@@ -1,6 +1,6 @@
 extends TextureButton
 
-@export var game_scene_path: String = "res://scenes/Main/main.tscn"
+@export var game_scene_path: String = "res://scenes/Main/Main.tscn"
 
 func _ready():
 	#connect this button's pressed signal to our function

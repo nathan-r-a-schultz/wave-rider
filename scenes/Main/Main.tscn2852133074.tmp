@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bfmaa2o8jtjaf" path="res://scenes/Main/texture_rect.gd" id="2_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
 [ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_q8kdv"]
-[ext_resource type="Script" uid="uid://bljxuf44tedwe" path="res://scenes/Main/coin.gd" id="7_exyxu"]
+[ext_resource type="Script" uid="uid://bljxuf44tedwe" path="res://scenes/Main/coins.gd" id="7_exyxu"]
 [ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
 
@@ -75,14 +75,13 @@ expand_mode = 1
 script = ExtResource("7_r0gd4")
 
 [node name="Coin" type="Area2D" parent="CoinGroups" groups=["collectibles"]]
-position = Vector2(67, -143)
+position = Vector2(269, 207)
 script = ExtResource("7_exyxu")
 
 [node name="Sprite2D" type="Sprite2D" parent="CoinGroups/Coin"]
-visible = false
 texture_filter = 1
 texture = ExtResource("7_q8kdv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoinGroups/Coin"]
-visible = false
+position = Vector2(9, 9)
 shape = SubResource("RectangleShape2D_yxg74")
