@@ -1,4 +1,26 @@
-# Godot 4+ specific ignores
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+.mono/
+data_*/
+mono_crash.*.json
+
+# Godot 4 specific
 .godot/
-/android/
+
+# Temporary files
 *.tmp
+*.temp
+*~
+
+# Godot temporary scene files
+*.tscn.tmp
+*.tscn[0-9]*
+*.tscn[0-9]*.tmp
+Main.tscn[0-9]*
+*.scene.tmp
+
+# System files
+.DS_Store
+Thumbs.db
