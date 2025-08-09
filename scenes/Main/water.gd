@@ -1,7 +1,7 @@
 extends Node2D
 
+@onready var main = get_parent()
 @export var waterHeight := 326.0
-@export var scrollSpeed := 200.0
 
 var waterRects: Array[TextureRect] = []
 var screenWidth: float
@@ -29,7 +29,7 @@ func setupScrollingWaterRects():
 		
 func _process(delta):
 	for rect in waterRects:
-		rect.position.x -= scrollSpeed * delta
+		rect.position.x -= main.scrollSpeed * delta
 		
 		if rect.position.x + rect.size.x < 0:
 			rect.position.x = findRightMostRectPosition() + screenWidth

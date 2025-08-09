@@ -1,7 +1,7 @@
 extends Node2D
 class_name CoinGroups
 
-@export var scrollSpeed := 200.0
+@onready var main = get_parent()
 
 # each coin group is represented as an array
 # this array: [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
@@ -31,7 +31,7 @@ func _process(delta):
 			activeCoins.remove_at(coinIndex)
 			continue
 		
-		currentCoin.position.x -= scrollSpeed * delta
+		currentCoin.position.x -= main.scrollSpeed * delta
 		
 		if currentCoin.position.x + (coinSize[0] / 2) < 0:
 			currentCoin.queue_free()

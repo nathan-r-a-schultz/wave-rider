@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var buoyancy_force := 1000.0
 @export var jump_force := -600.0
 @export var water_level := 346  # distance from top of screen to water surface
+@export var isAlive: bool
 
 var is_pressed: bool = false
 
@@ -12,10 +13,11 @@ var is_pressed: bool = false
 func _ready():
 	# set initial position above water
 	global_position.y = water_level - 50
+	isAlive = true
 
 # handles input
 func _input(event):
-	if event is InputEventScreenTouch or event is InputEventMouseButton:
+	if event is InputEventScreenTouch or event is InputEventMouseButton and isAlive == true:
 		is_pressed = event.pressed
 
 # physics yuh
@@ -46,7 +48,11 @@ func _physics_process(delta):
 		global_position.y = screen_height
 		velocity.y = min(velocity.y, 0)  # don't allow downward velocity when at bottom
 	
-	move_and_slide()
+	if isAlive == true:
+		move_and_slide()
+	
+func setAlive(status: bool):
+	isAlive = status
 	
 # BUNCH OF UNUSED CODE BELOW
 # KEEPING IT IN HERE FOR NOW CAUSE I'M STILL LEARNING GODOT AND WANT TO SAVE IT

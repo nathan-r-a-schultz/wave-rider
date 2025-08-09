@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=18 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="1_brr1f"]
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
 [ext_resource type="Script" uid="uid://l64k5qg7makr" path="res://scenes/Main/coin_counter.gd" id="10_krkin"]
+[ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
+[ext_resource type="Texture2D" uid="uid://bmndi4434y22o" path="res://assets/deathtrigger.png" id="11_yxg74"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_fos0i"]
 diffuse_texture = ExtResource("4_q8kdv")
@@ -102,3 +104,17 @@ offset_right = 106.0
 offset_bottom = 39.0
 bbcode_enabled = true
 script = ExtResource("10_krkin")
+
+[node name="DeathTriggers" type="Node2D" parent="."]
+
+[node name="DebugTrigger" type="Area2D" parent="DeathTriggers" groups=["collectibles"]]
+z_index = 1
+position = Vector2(266, 573)
+script = ExtResource("11_gqpea")
+
+[node name="Sprite2D" type="Sprite2D" parent="DeathTriggers/DebugTrigger"]
+texture_filter = 1
+texture = ExtResource("11_yxg74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathTriggers/DebugTrigger"]
+shape = SubResource("RectangleShape2D_yxg74")
