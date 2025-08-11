@@ -2,9 +2,11 @@ extends Node2D
 var coinGenerator: CoinGroups
 
 @export var collectedCoins := 0
-@export var scrollSpeed: int = 200
+@export var distance: int
+@export var scrollSpeed := 200
 
 var spawn_timer = Timer.new()
+var totalScroll := 0.0
 
 func _ready():
 	coinGenerator = CoinGroups.new()
@@ -26,3 +28,7 @@ func _process(_delta):
 	if $Jetski.isAlive == false:
 		scrollSpeed = 0
 		spawn_timer.paused = true
+		get_tree().change_scene_to_file("res://scenes/GameOver/GameOver.tscn")
+	else:
+		totalScroll += scrollSpeed
+		distance = int(totalScroll / 1500)

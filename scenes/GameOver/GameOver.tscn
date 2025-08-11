@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b36kkq3w5cxf"]
+
+[ext_resource type="Texture2D" uid="uid://dt7oaoy07ra3u" path="res://assets/startbutton.png" id="1_kgfi2"]
+[ext_resource type="Script" uid="uid://bccgcu5ill8o6" path="res://scenes/TitleScreen/texture_button.gd" id="2_ppu1c"]
+
+[node name="GameOver" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 467.0
+offset_top = 297.0
+offset_right = 595.0
+offset_bottom = 425.0
+texture_normal = ExtResource("1_kgfi2")
+stretch_mode = 0
+script = ExtResource("2_ppu1c")
