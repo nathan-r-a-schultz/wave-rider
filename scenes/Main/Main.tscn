@@ -95,6 +95,7 @@ offset_top = -1.0
 offset_right = 106.0
 offset_bottom = 39.0
 bbcode_enabled = true
+scroll_active = false
 script = ExtResource("10_krkin")
 
 [node name="DistanceLabel" type="RichTextLabel" parent="GUI"]
@@ -110,7 +111,7 @@ position = Vector2(900, -427)
 
 [node name="DebugTrigger" type="Area2D" parent="DeathTriggers" groups=["collectibles"]]
 z_index = 1
-position = Vector2(266, 573)
+position = Vector2(-446, 1411)
 script = ExtResource("11_gqpea")
 
 [node name="Sprite2D" type="Sprite2D" parent="DeathTriggers/DebugTrigger"]
