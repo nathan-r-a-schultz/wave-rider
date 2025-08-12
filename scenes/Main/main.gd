@@ -1,7 +1,6 @@
 extends Node2D
 var coinGenerator: CoinGroups
 
-@export var collectedCoins := 0
 @export var distance: int
 @export var scrollSpeed := 200
 
@@ -21,9 +20,6 @@ func _ready():
 	
 func _on_spawn_timer_timeout():
 	coinGenerator.spawnCoins()
-	
-func getCollectectedCoins() -> int:
-	return collectedCoins
 
 func _process(_delta):
 	if $Jetski.isAlive == false:

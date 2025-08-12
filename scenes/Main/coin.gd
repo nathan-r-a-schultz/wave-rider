@@ -8,5 +8,5 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Jetski":
-		main.collectedCoins += 1
+		Global.currentCoins += 1
 		queue_free()
