@@ -1,9 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=17 format=3 uid="uid://dhm3ap26ad055"]
 
-[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="1_brr1f"]
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
-[ext_resource type="Script" uid="uid://bfmaa2o8jtjaf" path="res://scenes/Main/texture_rect.gd" id="2_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
 [ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_q8kdv"]
 [ext_resource type="Script" uid="uid://bljxuf44tedwe" path="res://scenes/Main/coin.gd" id="7_exyxu"]
@@ -35,44 +33,36 @@ script = ExtResource("1_d463r")
 [node name="Water" type="Node2D" parent="."]
 script = ExtResource("1_pkilc")
 
-[node name="TextureRect" type="TextureRect" parent="Water"]
-z_index = 1
-texture_filter = 1
-offset_top = 322.0
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = ExtResource("1_brr1f")
-stretch_mode = 1
-script = ExtResource("2_pkilc")
-
 [node name="Jetski" type="CharacterBody2D" parent="."]
-position = Vector2(234, 254)
+z_index = -1
+position = Vector2(453, 414)
 script = ExtResource("3_d463r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Jetski"]
 texture_filter = 1
-position = Vector2(21, 10.5)
 scale = Vector2(4, 4)
 texture = SubResource("CanvasTexture_fos0i")
 
 [node name="UpperHitBox" type="CollisionShape2D" parent="Jetski"]
-position = Vector2(57.5, 1)
+position = Vector2(35, -10)
 shape = SubResource("RectangleShape2D_exyxu")
 
 [node name="LowerHitBox" type="CollisionShape2D" parent="Jetski"]
-position = Vector2(38.5, 24.5)
+position = Vector2(21, 17)
 shape = SubResource("RectangleShape2D_r0gd4")
 
 [node name="RearHitBox" type="CollisionShape2D" parent="Jetski"]
-position = Vector2(-15.75, 19.5)
+position = Vector2(-33, 8)
 shape = SubResource("RectangleShape2D_krkin")
 
 [node name="Background" type="Node2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
 z_index = -1
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = -52.0
+offset_top = -22.0
+offset_right = 1100.0
+offset_bottom = 626.0
 expand_mode = 1
 
 [node name="CoinGroups" type="Node2D" parent="."]
@@ -115,6 +105,7 @@ bbcode_enabled = true
 script = ExtResource("11_1jtt4")
 
 [node name="DeathTriggers" type="Node2D" parent="."]
+position = Vector2(900, -427)
 
 [node name="DebugTrigger" type="Area2D" parent="DeathTriggers" groups=["collectibles"]]
 z_index = 1

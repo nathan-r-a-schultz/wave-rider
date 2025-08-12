@@ -4,15 +4,12 @@ extends CharacterBody2D
 @export var water_resistance := 300.0
 @export var buoyancy_force := 1000.0
 @export var jump_force := -600.0
-@export var water_level := 346  # distance from top of screen to water surface
 @export var isAlive: bool
 
 var is_pressed: bool = false
 
 # the init function
 func _ready():
-	# set initial position above water
-	global_position.y = water_level - 50
 	isAlive = true
 
 # handles input
@@ -22,7 +19,8 @@ func _input(event):
 
 # physics yuh
 func _physics_process(delta):
-	var current_water_level = get_viewport().size.y - water_level
+	var current_water_level = get_viewport().size.y / 2
+	#print(get_viewport().size.y)
 	
 	if is_pressed:
 		# when screen is pressed, jetski tries to go down
@@ -53,6 +51,9 @@ func _physics_process(delta):
 	
 func setAlive(status: bool):
 	isAlive = status
+	
+func scaleToWindow():
+	print("resized")
 	
 # BUNCH OF UNUSED CODE BELOW
 # KEEPING IT IN HERE FOR NOW CAUSE I'M STILL LEARNING GODOT AND WANT TO SAVE IT
