@@ -58,11 +58,12 @@ shape = SubResource("RectangleShape2D_krkin")
 [node name="Background" type="Node2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
+visible = false
 z_index = -1
-offset_left = -52.0
-offset_top = -22.0
-offset_right = 1100.0
-offset_bottom = 626.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1151.0
+offset_bottom = 647.0
 expand_mode = 1
 
 [node name="CoinGroups" type="Node2D" parent="."]

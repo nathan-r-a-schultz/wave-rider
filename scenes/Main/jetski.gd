@@ -19,8 +19,7 @@ func _input(event):
 
 # physics yuh
 func _physics_process(delta):
-	var current_water_level = get_viewport().size.y / 2
-	#print(get_viewport().size.y)
+	var current_water_level = get_viewport_rect().size.y / 2
 	
 	if is_pressed:
 		# when screen is pressed, jetski tries to go down
@@ -38,7 +37,7 @@ func _physics_process(delta):
 	velocity.y *= 0.98
 	
 	# keep jetski within bounds
-	var screen_height = get_viewport().size.y
+	var screen_height = get_viewport_rect().size.y
 	if global_position.y < 0:
 		global_position.y = 0
 		velocity.y = max(velocity.y, 0)  # don't allow upward velocity when at top
@@ -51,9 +50,6 @@ func _physics_process(delta):
 	
 func setAlive(status: bool):
 	isAlive = status
-	
-func scaleToWindow():
-	print("resized")
 	
 # BUNCH OF UNUSED CODE BELOW
 # KEEPING IT IN HERE FOR NOW CAUSE I'M STILL LEARNING GODOT AND WANT TO SAVE IT

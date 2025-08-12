@@ -42,7 +42,8 @@ func spawnCoins():
 	# note: remove the underscores eventually. it's just to prevent warnings
 	var selection: int = rng.randi_range(0, coinGroups.size() - 1)
 	var coinPattern: Array = coinGroups[selection]
-	var yPosition: int = rng.randi_range(0, get_viewport().size.y) # spawn at a random y coord
+	@warning_ignore("narrowing_conversion")
+	var yPosition: int = rng.randi_range(0, get_viewport_rect().size.y) # spawn at a random y coord
 	
 	# n^2 runtime but i'm never going to make a crazy complex coin pattern so it's okay
 	for rowIndex in range(coinPattern.size()):
@@ -51,7 +52,7 @@ func spawnCoins():
 			var coinVal = row[colIndex]
 			if coinVal == 1:
 				var coinInstance = COIN.instantiate()
-				var xPos = get_viewport().size.x + (colIndex * coinSize.x)
+				var xPos = get_viewport_rect().size.x + (colIndex * coinSize.x)
 				var yPos = yPosition + (rowIndex * coinSize.y)
 				coinInstance.position = Vector2(xPos, yPos)
 				add_child(coinInstance)

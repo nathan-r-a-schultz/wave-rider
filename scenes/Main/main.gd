@@ -10,8 +10,6 @@ var totalScroll := 0.0
 
 func _ready():
 	
-	get_window().size_changed.connect(_on_window_size_changed)
-	
 	coinGenerator = CoinGroups.new()
 	add_child(coinGenerator)
 	coinGenerator.spawnCoins()
@@ -35,6 +33,3 @@ func _process(_delta):
 	else:
 		totalScroll += scrollSpeed
 		distance = int(totalScroll / 1500)
-		
-func _on_window_size_changed():
-	$Jetski.scaleToWindow()
