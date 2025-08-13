@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=16 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
 [ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_q8kdv"]
-[ext_resource type="Script" uid="uid://bljxuf44tedwe" path="res://scenes/Main/coin.gd" id="7_exyxu"]
+[ext_resource type="Script" uid="uid://cp1ptqbm6rktp" path="res://scenes/Main/coin.gd" id="7_exyxu"]
 [ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
-[ext_resource type="Script" uid="uid://l64k5qg7makr" path="res://scenes/Main/coin_counter.gd" id="10_krkin"]
-[ext_resource type="Script" uid="uid://d0n3eramunwaj" path="res://scenes/Main/distance_label.gd" id="11_1jtt4"]
+[ext_resource type="Script" uid="uid://bvub3mbysm4ve" path="res://scenes/Main/main_gui.gd" id="8_gqpea"]
 [ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
 [ext_resource type="Texture2D" uid="uid://bmndi4434y22o" path="res://assets/deathtrigger.png" id="11_yxg74"]
 
@@ -87,6 +86,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("8_gqpea")
 
 [node name="CoinCounter" type="RichTextLabel" parent="GUI"]
 layout_mode = 0
@@ -96,7 +96,6 @@ offset_right = 106.0
 offset_bottom = 39.0
 bbcode_enabled = true
 scroll_active = false
-script = ExtResource("10_krkin")
 
 [node name="DistanceLabel" type="RichTextLabel" parent="GUI"]
 layout_mode = 0
@@ -104,7 +103,6 @@ offset_top = 24.0
 offset_right = 167.0
 offset_bottom = 54.0
 bbcode_enabled = true
-script = ExtResource("11_1jtt4")
 
 [node name="DeathTriggers" type="Node2D" parent="."]
 position = Vector2(900, -427)
