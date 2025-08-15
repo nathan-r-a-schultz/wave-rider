@@ -1,9 +1,19 @@
 extends Node
 
 var currentScene = null
-var currentCoins: int
+
+signal coins_changed(newCoins: int)
+signal distance_changed(newDistance: float)
+
 var totalCoins: int
-var distance: int
+
+@export var currentCoins: int = 0:
+	set(value):
+		currentCoins = value
+		coins_changed.emit(currentCoins)
+		
+
+@export var distance: int = 0
 
 func _ready():
 	var root = get_tree().root
