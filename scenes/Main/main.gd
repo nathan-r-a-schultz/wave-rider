@@ -1,5 +1,6 @@
 extends Node2D
 var coinGenerator: CoinGroups
+var triggerGenerator: DeathGroups
 
 @export var scrollSpeed := 200
 
@@ -14,6 +15,10 @@ func _ready():
 	add_child(coinGenerator)
 	coinGenerator.spawnCoins()
 	
+	triggerGenerator = DeathGroups.new()
+	add_child(triggerGenerator)
+	triggerGenerator.spawnTriggers()
+	
 	spawn_timer.wait_time = 5.0
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.autostart = true
@@ -21,6 +26,7 @@ func _ready():
 	
 func _on_spawn_timer_timeout():
 	coinGenerator.spawnCoins()
+	triggerGenerator.spawnTriggers()
 
 func _process(_delta):
 	if $Jetski.isAlive == false:

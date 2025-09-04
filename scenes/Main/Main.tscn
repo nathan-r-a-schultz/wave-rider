@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=19 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bvub3mbysm4ve" path="res://scenes/Main/main_gui.gd" id="8_gqpea"]
 [ext_resource type="Texture2D" uid="uid://dripgg2ipg786" path="res://assets/pausebutton.png" id="9_yxg74"]
 [ext_resource type="Texture2D" uid="uid://bn00ku7pyul1u" path="res://assets/unpausebutton.png" id="10_gqpea"]
+[ext_resource type="Script" uid="uid://dkhlnay0d1h5u" path="res://scenes/Main/death_groups.gd" id="11_1jtt4"]
 [ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
 [ext_resource type="Texture2D" uid="uid://bmndi4434y22o" path="res://assets/deathtrigger.png" id="11_yxg74"]
 
@@ -119,17 +120,18 @@ texture_normal = ExtResource("9_yxg74")
 texture_pressed = ExtResource("10_gqpea")
 stretch_mode = 0
 
-[node name="DeathTriggers" type="Node2D" parent="."]
-position = Vector2(900, -427)
+[node name="DeathGroups" type="Node2D" parent="."]
+script = ExtResource("11_1jtt4")
 
-[node name="DebugTrigger" type="Area2D" parent="DeathTriggers" groups=["collectibles"]]
+[node name="DeathTrigger" type="Area2D" parent="DeathGroups" groups=["obstacles"]]
 z_index = 1
-position = Vector2(-446, 1411)
+position = Vector2(190, -143)
 script = ExtResource("11_gqpea")
 
-[node name="Sprite2D" type="Sprite2D" parent="DeathTriggers/DebugTrigger"]
+[node name="Sprite2D" type="Sprite2D" parent="DeathGroups/DeathTrigger"]
+visible = false
 texture_filter = 1
 texture = ExtResource("11_yxg74")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathTriggers/DebugTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathGroups/DeathTrigger"]
 shape = SubResource("RectangleShape2D_yxg74")
