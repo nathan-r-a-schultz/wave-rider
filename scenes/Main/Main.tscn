@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=18 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
-[ext_resource type="Texture2D" uid="uid://cap8qmy15iuns" path="res://assets/jetski.png" id="4_q8kdv"]
+[ext_resource type="Texture2D" uid="uid://ddc601d0eyhom" path="res://assets/jetski.png" id="4_q8kdv"]
 [ext_resource type="Script" uid="uid://cp1ptqbm6rktp" path="res://scenes/Main/coin.gd" id="7_exyxu"]
 [ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
@@ -13,9 +13,6 @@
 [ext_resource type="Script" uid="uid://dkhlnay0d1h5u" path="res://scenes/Main/death_groups.gd" id="11_1jtt4"]
 [ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
 [ext_resource type="Texture2D" uid="uid://bmndi4434y22o" path="res://assets/deathtrigger.png" id="11_yxg74"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_fos0i"]
-diffuse_texture = ExtResource("4_q8kdv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exyxu"]
 size = Vector2(51, 18)
@@ -43,8 +40,8 @@ script = ExtResource("3_d463r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Jetski"]
 texture_filter = 1
-scale = Vector2(4, 4)
-texture = SubResource("CanvasTexture_fos0i")
+scale = Vector2(3, 3)
+texture = ExtResource("4_q8kdv")
 
 [node name="UpperHitBox" type="CollisionShape2D" parent="Jetski"]
 position = Vector2(35, -10)
