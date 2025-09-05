@@ -21,7 +21,7 @@ var activeCoins: Array[Node2D] = []
 
 func _ready():
 	#coinSize = getCoinSize()
-	coinSize = Vector2(32, 32) # hardcoded for testing
+	coinSize = Vector2(16, 16) # hardcoded for testing
 
 func _process(delta):
 	for coinIndex in range(activeCoins.size() - 1, -1, -1):
@@ -33,7 +33,7 @@ func _process(delta):
 		
 		currentCoin.position.x -= main.scrollSpeed * delta
 		
-		if currentCoin.position.x + (coinSize[0] / 2) < 0:
+		if currentCoin.position.x + (coinSize.x / 2) < 0:
 			currentCoin.queue_free()
 			activeCoins.remove_at(coinIndex)
 		
@@ -55,6 +55,7 @@ func spawnCoins():
 				var xPos = get_viewport_rect().size.x + (colIndex * coinSize.x)
 				var yPos = yPosition + (rowIndex * coinSize.y)
 				coinInstance.position = Vector2(xPos, yPos)
+				coinInstance.get_node("Sprite2D").scale = Vector2(0.75, 0.75)
 				add_child(coinInstance)
 				activeCoins.append(coinInstance)
 	

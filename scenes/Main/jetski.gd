@@ -2,8 +2,7 @@ extends CharacterBody2D
 
 @export var gravity := 800.0
 @export var water_resistance := 300.0
-@export var buoyancy_force := 1000.0
-@export var jump_force := -600.0
+@export var buoyancy_force := 1400.0
 @export var isAlive: bool
 
 var is_pressed: bool = false

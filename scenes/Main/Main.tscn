@@ -37,7 +37,8 @@ script = ExtResource("1_pkilc")
 
 [node name="Jetski" type="CharacterBody2D" parent="."]
 z_index = -1
-position = Vector2(453, 414)
+position = Vector2(97.0001, 55)
+scale = Vector2(0.33, 0.33)
 script = ExtResource("3_d463r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Jetski"]
@@ -85,10 +86,11 @@ visible = false
 shape = SubResource("RectangleShape2D_yxg74")
 
 [node name="GUI" type="Control" parent="."]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 20.0
+offset_bottom = 20.0
 script = ExtResource("8_gqpea")
 
 [node name="CoinCounter" type="RichTextLabel" parent="GUI"]
@@ -111,10 +113,11 @@ bbcode_enabled = true
 process_mode = 3
 texture_filter = 1
 layout_mode = 0
-offset_left = 1847.0
-offset_top = 11.0
-offset_right = 1911.0
-offset_bottom = 75.0
+offset_left = 298.0
+offset_top = 6.0
+offset_right = 362.0
+offset_bottom = 70.0
+scale = Vector2(0.25, 0.25)
 toggle_mode = true
 texture_normal = ExtResource("9_yxg74")
 texture_pressed = ExtResource("10_gqpea")

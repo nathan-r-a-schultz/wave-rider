@@ -18,10 +18,10 @@ metadata/_edit_use_anchors_ = true
 [node name="RedoButton" type="TextureButton" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1190.0
-offset_top = 575.0
-offset_right = 1318.0
-offset_bottom = 703.0
+offset_left = 69.0
+offset_top = 25.0
+offset_right = 197.0
+offset_bottom = 153.0
 texture_normal = ExtResource("1_kgfi2")
 stretch_mode = 0
 

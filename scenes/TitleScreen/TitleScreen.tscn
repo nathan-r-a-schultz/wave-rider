@@ -18,9 +18,9 @@ metadata/_edit_use_anchors_ = true
 [node name="StartButton" type="TextureButton" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 467.0
-offset_top = 297.0
-offset_right = 595.0
-offset_bottom = 425.0
+offset_left = 81.0
+offset_top = 17.0
+offset_right = 209.0
+offset_bottom = 145.0
 texture_normal = ExtResource("1_trnkw")
 stretch_mode = 0

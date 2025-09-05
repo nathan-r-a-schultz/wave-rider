@@ -21,7 +21,7 @@ var activeTriggers: Array[Node2D] = []
 
 func _ready():
 	#coinSize = getCoinSize() # leftover from copying the code from coins
-	triggerSize = Vector2(32, 32) # hardcoded for testing
+	triggerSize = Vector2(16, 16) # hardcoded for testing
 
 func _process(delta):
 	for triggerIndex in range(activeTriggers.size() - 1, -1, -1):
@@ -33,7 +33,7 @@ func _process(delta):
 		
 		currentTrigger.position.x -= main.scrollSpeed * delta
 		
-		if currentTrigger.position.x + (triggerSize[0] / 2) < 0:
+		if currentTrigger.position.x + (triggerSize.x / 2) < 0:
 			currentTrigger.queue_free()
 			activeTriggers.remove_at(triggerIndex)
 		
@@ -45,7 +45,7 @@ func spawnTriggers():
 	@warning_ignore("narrowing_conversion")
 	var yPosition: int = rng.randi_range(0, get_viewport_rect().size.y) # spawn at a random y coord
 	
-	# n^2 runtime but i'm never going to make a crazy complex coin pattern so it's okay
+	# n^2 runtime but i'm never going to make a crazy complex death pattern so it's okay
 	for rowIndex in range(deathPattern.size()):
 		var row = deathPattern[rowIndex]
 		for colIndex in range(row.size()):
@@ -55,6 +55,7 @@ func spawnTriggers():
 				var xPos = get_viewport_rect().size.x + (colIndex * triggerSize.x)
 				var yPos = yPosition + (rowIndex * triggerSize.y)
 				deathInstance.position = Vector2(xPos, yPos)
+				deathInstance.get_node("Sprite2D").scale = Vector2(0.5, 0.5)
 				add_child(deathInstance)
 				activeTriggers.append(deathInstance)
 	

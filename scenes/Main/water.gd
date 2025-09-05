@@ -6,7 +6,7 @@ extends Node2D
 var waterRects: Array[TextureRect] = []
 
 func _ready():
-	position.y = get_viewport().size.y / 2
+	position.y = get_viewport_rect().size.y / 2
 	
 	setupScrollingWaterRects()
 	
