@@ -34,7 +34,6 @@ func _process(_delta):
 	else:
 		totalScroll += scrollSpeed
 		scrollSpeed += int((scrollSpeed / 100)) * 0.01
-		print(scrollSpeed)
 		Global.distance = int(totalScroll / 1000)
 		
 func _transitionToGameOver():

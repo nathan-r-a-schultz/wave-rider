@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
-[ext_resource type="Texture2D" uid="uid://cijp55ucj3d82" path="res://assets/jetski.png" id="4_q8kdv"]
+[ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="4_q8kdv"]
 [ext_resource type="Script" uid="uid://cp1ptqbm6rktp" path="res://scenes/Main/coin.gd" id="7_exyxu"]
 [ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
@@ -45,12 +45,10 @@ texture = ExtResource("4_q8kdv")
 
 [node name="UpperHitBox" type="CollisionShape2D" parent="Jetski"]
 position = Vector2(30.5076, -9.99998)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_exyxu")
 
 [node name="LowerHitBox" type="CollisionShape2D" parent="Jetski"]
 position = Vector2(20.5075, 14.3712)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_r0gd4")
 
 [node name="RearHitBox" type="CollisionShape2D" parent="Jetski"]
