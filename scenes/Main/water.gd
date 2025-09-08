@@ -4,6 +4,7 @@ extends Node2D
 @export var waterHeight := 326.0
 
 var waterRects: Array[TextureRect] = []
+const WATER_TEXTURE = preload("res://assets/water.png")
 
 func _ready():
 	position.y = get_viewport_rect().size.y / 2
@@ -16,7 +17,7 @@ func setupScrollingWaterRects():
 		var textureRect = TextureRect.new()
 		add_child(textureRect)
 		
-		textureRect.texture = preload("res://assets/water.png")
+		textureRect.texture = WATER_TEXTURE
 		textureRect.stretch_mode = TextureRect.STRETCH_TILE
 		textureRect.size = Vector2(get_viewport_rect().size.x, (get_viewport_rect().size.y / 2))
 		textureRect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -29,7 +30,7 @@ func _process(delta):
 	for rect in waterRects:
 		rect.position.x -= main.scrollSpeed * delta
 		
-		if rect.position.x + rect.size.x < 0:
+		if rect.position.x + rect.size.x < 0: 
 			rect.position.x = findRightMostRectPosition() + get_viewport_rect().size.x
 			
 func findRightMostRectPosition():

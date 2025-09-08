@@ -21,7 +21,7 @@ var activeTriggers: Array[Node2D] = []
 
 func _ready():
 	#coinSize = getCoinSize() # leftover from copying the code from coins
-	triggerSize = Vector2(13, 13) # hardcoded for testing
+	triggerSize = Vector2(12, 12) # hardcoded for testing
 
 func _process(delta):
 	for triggerIndex in range(activeTriggers.size() - 1, -1, -1):
@@ -55,7 +55,6 @@ func spawnTriggers():
 				var xPos = get_viewport_rect().size.x + (colIndex * triggerSize.x)
 				var yPos = yPosition + (rowIndex * triggerSize.y)
 				deathInstance.position = Vector2(xPos, yPos)
-				deathInstance.get_node("Sprite2D").scale = Vector2(0.40625, 0.40625)
 				add_child(deathInstance)
 				activeTriggers.append(deathInstance)
 	

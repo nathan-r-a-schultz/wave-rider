@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d08tyr7nx05vo"
-path="res://.godot/imported/deathtrigger.png-4e17f12653ca1ca599423026105771aa.ctex"
+uid="uid://dkga2s267k34"
+path="res://.godot/imported/warning.png-50ffd86030d94e26126a07ff270848d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/deathtrigger.png"
-dest_files=["res://.godot/imported/deathtrigger.png-4e17f12653ca1ca599423026105771aa.ctex"]
+source_file="res://assets/warning.png"
+dest_files=["res://.godot/imported/warning.png-50ffd86030d94e26126a07ff270848d8.ctex"]
 
 [params]
 

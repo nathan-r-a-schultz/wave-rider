@@ -2,7 +2,7 @@ extends Node2D
 var coinGenerator: CoinGroups
 var triggerGenerator: DeathGroups
 
-@export var scrollSpeed := 100.0
+@export var scrollSpeed := 100
 
 var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
@@ -15,11 +15,9 @@ func _ready():
 	Global.distance = 0
 	coinGenerator = CoinGroups.new()
 	add_child(coinGenerator)
-	#coinGenerator.spawnCoins()
-	#
+	
 	triggerGenerator = DeathGroups.new()
 	add_child(triggerGenerator)
-	#triggerGenerator.spawnTriggers()
 	
 	coinTimer.wait_time = rng.randf_range(1.0, 2.5)
 	coinTimer.timeout.connect(_on_coin_timer_timeout)
@@ -44,7 +42,7 @@ func _process(_delta):
 		_transitionToGameOver()
 	else:
 		totalScroll += scrollSpeed
-		scrollSpeed += int((scrollSpeed / 100)) * 0.01
+		#scrollSpeed += int((scrollSpeed / 100)) * 0.01
 		Global.distance = int(totalScroll / 750)
 		
 func _transitionToGameOver():

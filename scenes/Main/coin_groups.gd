@@ -55,7 +55,7 @@ func spawnCoins():
 				var xPos = get_viewport_rect().size.x + (colIndex * coinSize.x)
 				var yPos = yPosition + (rowIndex * coinSize.y)
 				coinInstance.position = Vector2(xPos, yPos)
-				coinInstance.get_node("Sprite2D").scale = Vector2(0.75, 0.75)
+				#coinInstance.get_node("Sprite2D").scale = Vector2(0.75, 0.75)
 				add_child(coinInstance)
 				activeCoins.append(coinInstance)
 	
