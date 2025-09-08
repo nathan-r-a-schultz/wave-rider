@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b36kkq3w5cxf"]
+[gd_scene load_steps=4 format=3 uid="uid://b36kkq3w5cxf"]
 
 [ext_resource type="Script" uid="uid://dwntn2hw8fw8u" path="res://scenes/GameOver/game_over_gui.gd" id="1_51nbm"]
 [ext_resource type="Texture2D" uid="uid://dt7oaoy07ra3u" path="res://assets/startbutton.png" id="1_kgfi2"]
+[ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_ppu1c"]
 
 [node name="GameOver" type="Node2D"]
 
@@ -18,16 +19,18 @@ metadata/_edit_use_anchors_ = true
 [node name="RedoButton" type="TextureButton" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 69.0
-offset_top = 25.0
-offset_right = 197.0
-offset_bottom = 153.0
+offset_left = 18.0
+offset_top = 24.0
+offset_right = 146.0
+offset_bottom = 152.0
 texture_normal = ExtResource("1_kgfi2")
 stretch_mode = 0
 
 [node name="StatsDisplay" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = 892.0
-offset_top = 809.0
-offset_right = 1429.0
-offset_bottom = 932.0
+offset_left = 182.0
+offset_top = 26.0
+offset_right = 719.0
+offset_bottom = 149.0
+theme_override_fonts/normal_font = ExtResource("3_ppu1c")
+theme_override_font_sizes/normal_font_size = 7
