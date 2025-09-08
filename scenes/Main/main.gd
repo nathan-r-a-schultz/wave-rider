@@ -2,7 +2,7 @@ extends Node2D
 var coinGenerator: CoinGroups
 var triggerGenerator: DeathGroups
 
-@export var scrollSpeed := 200
+@export var scrollSpeed := 100.0
 
 var spawn_timer = Timer.new()
 var totalScroll := 0.0
@@ -33,7 +33,9 @@ func _process(_delta):
 		_transitionToGameOver()
 	else:
 		totalScroll += scrollSpeed
-		Global.distance = int(totalScroll / 1500)
+		scrollSpeed += int((scrollSpeed / 100)) * 0.01
+		print(scrollSpeed)
+		Global.distance = int(totalScroll / 1000)
 		
 func _transitionToGameOver():
 	scrollSpeed = 0

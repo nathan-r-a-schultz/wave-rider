@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cijp55ucj3d82"
-path="res://.godot/imported/jetski.png-3866ade64e69e5e9b2bd4804ebde6178.ctex"
+uid="uid://ddc601d0eyhom"
+path="res://.godot/imported/wip-jetski.png-b91564f135fe9738e3f4dc7188dbbdba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/jetski.png"
-dest_files=["res://.godot/imported/jetski.png-3866ade64e69e5e9b2bd4804ebde6178.ctex"]
+source_file="res://assets/wip-jetski.png"
+dest_files=["res://.godot/imported/wip-jetski.png-b91564f135fe9738e3f4dc7188dbbdba.ctex"]
 
 [params]
 
