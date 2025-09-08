@@ -28,10 +28,14 @@ func setupScrollingWaterRects():
 		
 func _process(delta):
 	for rect in waterRects:
+		
 		rect.position.x -= main.scrollSpeed * delta
 		
 		if rect.position.x + rect.size.x < 0: 
 			rect.position.x = findRightMostRectPosition() + get_viewport_rect().size.x
+		
+		if (rect.position.x > get_viewport_rect().size.x * 2):
+				rect.position.x -= main.scrollSpeed * delta
 			
 func findRightMostRectPosition():
 	var rightmost = -999999.0
