@@ -13,7 +13,7 @@ func _on_coins_changed(new_coins: int):
 	$CoinCounter.text = "Coins: " + str(new_coins)
 
 func _on_distance_changed(new_distance: float):
-	$DistanceLabel.text = "Distance: " + str(new_distance)
+	$DistanceLabel.text = "Distance: " + str(int(new_distance)) + "m"
 	
 func _on_pause_button_pressed():
 	if (get_tree().paused == false):

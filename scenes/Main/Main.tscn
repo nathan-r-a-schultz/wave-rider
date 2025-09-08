@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=19 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
 [ext_resource type="Script" uid="uid://bvub3mbysm4ve" path="res://scenes/Main/main_gui.gd" id="8_gqpea"]
+[ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="9_vup2a"]
 [ext_resource type="Texture2D" uid="uid://dripgg2ipg786" path="res://assets/pausebutton.png" id="9_yxg74"]
 [ext_resource type="Texture2D" uid="uid://bn00ku7pyul1u" path="res://assets/unpausebutton.png" id="10_gqpea"]
 [ext_resource type="Script" uid="uid://dkhlnay0d1h5u" path="res://scenes/Main/death_groups.gd" id="11_1jtt4"]
@@ -91,19 +92,23 @@ offset_bottom = 20.0
 script = ExtResource("8_gqpea")
 
 [node name="CoinCounter" type="RichTextLabel" parent="GUI"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = -1.0
+texture_filter = 1
+layout_direction = 2
+layout_mode = 1
 offset_right = 106.0
-offset_bottom = 39.0
+offset_bottom = 37.0
+theme_override_fonts/normal_font = ExtResource("9_vup2a")
+theme_override_font_sizes/normal_font_size = 7
 bbcode_enabled = true
 scroll_active = false
 
 [node name="DistanceLabel" type="RichTextLabel" parent="GUI"]
 layout_mode = 0
-offset_top = 24.0
+offset_top = 11.0
 offset_right = 167.0
-offset_bottom = 54.0
+offset_bottom = 41.0
+theme_override_fonts/normal_font = ExtResource("9_vup2a")
+theme_override_font_sizes/normal_font_size = 7
 bbcode_enabled = true
 
 [node name="PauseButton" type="TextureButton" parent="GUI"]
