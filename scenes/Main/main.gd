@@ -4,7 +4,9 @@ var triggerGenerator: DeathGroups
 
 @export var scrollSpeed := 100.0
 
-var spawn_timer = Timer.new()
+var coinTimer = Timer.new()
+var deathTriggerTimer = Timer.new()
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var totalScroll := 0.0
 
 func _ready():
@@ -13,20 +15,29 @@ func _ready():
 	Global.distance = 0
 	coinGenerator = CoinGroups.new()
 	add_child(coinGenerator)
-	coinGenerator.spawnCoins()
-	
+	#coinGenerator.spawnCoins()
+	#
 	triggerGenerator = DeathGroups.new()
 	add_child(triggerGenerator)
-	triggerGenerator.spawnTriggers()
+	#triggerGenerator.spawnTriggers()
 	
-	spawn_timer.wait_time = 5.0
-	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	spawn_timer.autostart = true
-	add_child(spawn_timer)
+	coinTimer.wait_time = rng.randf_range(1.0, 2.5)
+	coinTimer.timeout.connect(_on_coin_timer_timeout)
+	coinTimer.autostart = true
+	add_child(coinTimer)
 	
-func _on_spawn_timer_timeout():
+	deathTriggerTimer.wait_time = rng.randf_range(1.0, 2.5)
+	deathTriggerTimer.timeout.connect(_on_death_trigger_timer_timeout)
+	deathTriggerTimer.autostart = true
+	add_child(deathTriggerTimer)
+	
+func _on_coin_timer_timeout():
 	coinGenerator.spawnCoins()
+	coinTimer.wait_time = rng.randf_range(2.5, 5.0)
+	
+func _on_death_trigger_timer_timeout():
 	triggerGenerator.spawnTriggers()
+	deathTriggerTimer.wait_time = rng.randf_range(2.5, 5.0)
 
 func _process(_delta):
 	if $Jetski.isAlive == false:
@@ -38,6 +49,7 @@ func _process(_delta):
 		
 func _transitionToGameOver():
 	scrollSpeed = 0
-	spawn_timer.paused = true
+	coinTimer.paused = true
+	deathTriggerTimer.paused = true
 	Global.totalCoins += Global.currentCoins
 	Global.goToScene("res://scenes/GameOver/GameOver.tscn")
