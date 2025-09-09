@@ -36,12 +36,13 @@ func _physics_process(delta):
 	velocity.y *= 0.98
 	
 	# keep jetski within bounds
+	# note: kinda have to hardcode the value '9' until i can find a proper way to get the jetski's height
 	var screen_height = get_viewport_rect().size.y
-	if global_position.y < 0:
-		global_position.y = 0
+	if global_position.y < 9:
+		global_position.y = 9
 		velocity.y = max(velocity.y, 0)  # don't allow upward velocity when at top
-	elif global_position.y > screen_height:
-		global_position.y = screen_height
+	elif global_position.y > screen_height - 9:
+		global_position.y = screen_height - 9
 		velocity.y = min(velocity.y, 0)  # don't allow downward velocity when at bottom
 	
 	if isAlive == true:
