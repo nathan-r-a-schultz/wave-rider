@@ -8,6 +8,7 @@ var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var totalScroll := 0.0
+var distanceMultiplier := 25
 
 func _ready():
 	
@@ -41,7 +42,7 @@ func _process(_delta):
 	if $Jetski.isAlive == false:
 		_transitionToGameOver()
 	else:
-		totalScroll += scrollSpeed
+		totalScroll += scrollSpeed * _delta * distanceMultiplier
 		#scrollSpeed += int((scrollSpeed / 100)) * 0.01
 		Global.distance = int(totalScroll / 750)
 		
