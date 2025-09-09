@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=19 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
-[ext_resource type="Script" uid="uid://cey7ntb5rux6p" path="res://scenes/Main/background.gd" id="4_plsdc"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="4_q8kdv"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="5_72nt1"]
 [ext_resource type="Texture2D" uid="uid://dnins0y66iy1m" path="res://assets/grass-bg.png" id="6_plsdc"]
@@ -25,6 +24,9 @@ size = Vector2(12, 12)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_d463r")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+
 [node name="Jetski" type="CharacterBody2D" parent="."]
 z_index = 10
 position = Vector2(79, 55)
@@ -40,10 +42,10 @@ scale = Vector2(1.17187, 0.782118)
 polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23.36, -12.9556, 19.0933, -4.00558, 3.73333, -4.00558, -7.36, -12.9556, -7.36, -20.6271, -3.94667, -20.6271, -2.24, -16.7914, 13.12, -16.7914)
 
 [node name="Background" type="Node2D" parent="."]
-script = ExtResource("4_plsdc")
 
 [node name="Sky" type="Parallax2D" parent="Background"]
-autoscroll = Vector2(50, 0)
+repeat_size = Vector2(320, 0)
+autoscroll = Vector2(-10, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1
@@ -62,6 +64,8 @@ texture = ExtResource("6_plsdc")
 centered = false
 
 [node name="Beach" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(320, 0)
+autoscroll = Vector2(-20, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
 z_index = -1
