@@ -55,15 +55,5 @@ func spawnCoins():
 				var xPos = get_viewport_rect().size.x + (colIndex * coinSize.x)
 				var yPos = yPosition + (rowIndex * coinSize.y)
 				coinInstance.position = Vector2(xPos, yPos)
-				#coinInstance.get_node("Sprite2D").scale = Vector2(0.75, 0.75)
 				add_child(coinInstance)
 				activeCoins.append(coinInstance)
-	
-# goes unused currently but will be implemented later
-#func getCoinSize() -> Vector2:
-	#var coinSprite = get_node("Coin/Sprite2D")
-	#if coinSprite and coinSprite.texture:
-		#return coinSprite.texture.get_size() * coinSprite.scale
-	#else:
-		#return Vector2.ZERO
-	#

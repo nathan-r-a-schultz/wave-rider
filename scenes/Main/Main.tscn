@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="4_q8kdv"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="5_72nt1"]
-[ext_resource type="Texture2D" uid="uid://dnins0y66iy1m" path="res://assets/grass-bg.png" id="6_plsdc"]
+[ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="6_plsdc"]
 [ext_resource type="Script" uid="uid://cp1ptqbm6rktp" path="res://scenes/Main/coin.gd" id="7_exyxu"]
 [ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="7_iekte"]
 [ext_resource type="Texture2D" uid="uid://8llyas30vyxm" path="res://assets/coin.png" id="7_q8kdv"]
@@ -45,7 +45,7 @@ polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-10, 0)
+autoscroll = Vector2(-20, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1
@@ -54,6 +54,8 @@ position = Vector2(160, 28)
 texture = ExtResource("5_72nt1")
 
 [node name="Grass" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(320, 0)
+autoscroll = Vector2(-30, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
 z_index = -1
@@ -65,7 +67,7 @@ centered = false
 
 [node name="Beach" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-20, 0)
+autoscroll = Vector2(-40, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
 z_index = -1

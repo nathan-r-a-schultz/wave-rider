@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=4 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
 [ext_resource type="Texture2D" uid="uid://dt7oaoy07ra3u" path="res://assets/startbutton.png" id="1_trnkw"]
+[ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
 
 [node name="TitleScreen" type="Node2D"]
 
@@ -24,3 +25,14 @@ offset_right = 209.0
 offset_bottom = 145.0
 texture_normal = ExtResource("1_trnkw")
 stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_right = 71.0
+offset_bottom = 54.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_1rn58")
+theme_override_font_sizes/normal_font_size = 7
+text = "Note: this is a prototype. Textures and gameplay are not final."
