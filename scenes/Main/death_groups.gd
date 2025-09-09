@@ -17,7 +17,7 @@ var deathGroups: Array[Array] = [
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var triggerSize: Vector2
 const DEATH_TRIGGER : PackedScene = preload("res://scenes/Main/DeathTrigger.tscn")
-var activeTriggers: Array[Node2D] = []
+var activeTriggers: Array[Area2D] = []
 
 func _ready():
 	#coinSize = getCoinSize() # leftover from copying the code from coins
@@ -51,7 +51,7 @@ func spawnTriggers():
 		for colIndex in range(row.size()):
 			var deathVal = row[colIndex]
 			if deathVal == 1:
-				var deathInstance = DEATH_TRIGGER.instantiate()
+				var deathInstance = DEATH_TRIGGER.instantiate() as Area2D
 				var xPos = get_viewport_rect().size.x + (colIndex * triggerSize.x)
 				var yPos = yPosition + (rowIndex * triggerSize.y)
 				deathInstance.position = Vector2(xPos, yPos)

@@ -17,7 +17,7 @@ var coinGroups: Array[Array] = [
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var coinSize: Vector2
 const COIN : PackedScene = preload("res://scenes/Main/Coin.tscn")
-var activeCoins: Array[Node2D] = []
+var activeCoins: Array[Area2D] = []
 
 func _ready():
 	#coinSize = getCoinSize()
@@ -51,7 +51,7 @@ func spawnCoins():
 		for colIndex in range(row.size()):
 			var coinVal = row[colIndex]
 			if coinVal == 1:
-				var coinInstance = COIN.instantiate()
+				var coinInstance = COIN.instantiate() as Area2D
 				var xPos = get_viewport_rect().size.x + (colIndex * coinSize.x)
 				var yPos = yPosition + (rowIndex * coinSize.y)
 				coinInstance.position = Vector2(xPos, yPos)

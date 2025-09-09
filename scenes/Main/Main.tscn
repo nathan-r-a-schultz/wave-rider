@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=20 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
+[ext_resource type="Script" uid="uid://cey7ntb5rux6p" path="res://scenes/Main/background.gd" id="4_plsdc"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="4_q8kdv"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="5_72nt1"]
 [ext_resource type="Texture2D" uid="uid://dnins0y66iy1m" path="res://assets/grass-bg.png" id="6_plsdc"]
@@ -18,24 +19,11 @@
 [ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
 [ext_resource type="Texture2D" uid="uid://d08tyr7nx05vo" path="res://assets/deathtrigger.png" id="11_yxg74"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exyxu"]
-size = Vector2(9.74998, 8.00002)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0gd4"]
-size = Vector2(22.0075, 8.8712)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_krkin"]
-size = Vector2(10.25, 7.75)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxg74"]
-size = Vector2(14, 12)
+size = Vector2(12, 12)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_d463r")
-
-[node name="Water" type="Node2D" parent="."]
-z_index = 11
-script = ExtResource("1_pkilc")
 
 [node name="Jetski" type="CharacterBody2D" parent="."]
 z_index = 10
@@ -46,19 +34,13 @@ script = ExtResource("3_d463r")
 texture_filter = 1
 texture = ExtResource("4_q8kdv")
 
-[node name="UpperHitBox" type="CollisionShape2D" parent="Jetski"]
-position = Vector2(11.875, -4)
-shape = SubResource("RectangleShape2D_exyxu")
-
-[node name="LowerHitBox" type="CollisionShape2D" parent="Jetski"]
-position = Vector2(3.99623, 3.5644)
-shape = SubResource("RectangleShape2D_r0gd4")
-
-[node name="RearHitBox" type="CollisionShape2D" parent="Jetski"]
-position = Vector2(-12, -0.125)
-shape = SubResource("RectangleShape2D_krkin")
+[node name="Hitbox" type="CollisionPolygon2D" parent="Jetski"]
+position = Vector2(-9.375, 12.1328)
+scale = Vector2(1.17187, 0.782118)
+polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23.36, -12.9556, 19.0933, -4.00558, 3.73333, -4.00558, -7.36, -12.9556, -7.36, -20.6271, -3.94667, -20.6271, -2.24, -16.7914, 13.12, -16.7914)
 
 [node name="Background" type="Node2D" parent="."]
+script = ExtResource("4_plsdc")
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 autoscroll = Vector2(50, 0)
@@ -88,6 +70,10 @@ position = Vector2(0, 69)
 texture = ExtResource("7_iekte")
 centered = false
 
+[node name="Water" type="Node2D" parent="Background"]
+z_index = 11
+script = ExtResource("1_pkilc")
+
 [node name="CoinGroups" type="Node2D" parent="."]
 script = ExtResource("7_r0gd4")
 
@@ -97,13 +83,11 @@ position = Vector2(67, -143)
 script = ExtResource("7_exyxu")
 
 [node name="Sprite2D" type="Sprite2D" parent="CoinGroups/Coin"]
-visible = false
 texture_filter = 1
 texture = ExtResource("7_q8kdv")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoinGroups/Coin"]
-visible = false
 position = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_yxg74")
 
@@ -160,12 +144,10 @@ position = Vector2(190, -143)
 script = ExtResource("11_gqpea")
 
 [node name="Sprite2D" type="Sprite2D" parent="DeathGroups/DeathTrigger"]
-visible = false
 texture_filter = 1
 texture = ExtResource("11_yxg74")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathGroups/DeathTrigger"]
-visible = false
-position = Vector2(6, 5.5)
+position = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_yxg74")

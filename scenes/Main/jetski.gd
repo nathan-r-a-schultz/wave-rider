@@ -25,7 +25,7 @@ func _physics_process(delta):
 		if global_position.y >= current_water_level:
 			velocity.y += ((gravity / 1.25) - water_resistance) * delta
 		else:
-			velocity.y += (gravity / 1.2) * delta
+			velocity.y += gravity * delta
 	else:
 		if global_position.y >= current_water_level:
 			velocity.y -= buoyancy_force * delta * (global_position.y / 90) * 0.972
@@ -47,6 +47,6 @@ func _physics_process(delta):
 	
 	if isAlive == true:
 		move_and_slide()
-	
+
 func setAlive(status: bool):
 	isAlive = status

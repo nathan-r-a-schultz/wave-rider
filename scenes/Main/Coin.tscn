@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cumyev2kilqp2"]
 
 [ext_resource type="Script" uid="uid://cp1ptqbm6rktp" path="res://scenes/Main/coin.gd" id="1_ou7jl"]
-[ext_resource type="Texture2D" uid="uid://c61w0nb6jxbn4" path="res://assets/coin.png" id="2_ufda5"]
+[ext_resource type="Texture2D" uid="uid://8llyas30vyxm" path="res://assets/coin.png" id="2_ufda5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxg74"]
-size = Vector2(18, 18)
+size = Vector2(10, 12)
 
 [node name="Coin" type="Area2D" groups=["collectibles"]]
 script = ExtResource("1_ou7jl")
@@ -14,5 +14,4 @@ texture_filter = 1
 texture = ExtResource("2_ufda5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9, 9)
 shape = SubResource("RectangleShape2D_yxg74")
