@@ -61,6 +61,7 @@ shape = SubResource("RectangleShape2D_krkin")
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Sky" type="Parallax2D" parent="Background"]
+autoscroll = Vector2(50, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1

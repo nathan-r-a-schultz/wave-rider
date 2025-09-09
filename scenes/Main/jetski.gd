@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var gravity := 800.0
 @export var water_resistance := 300.0
-@export var buoyancy_force := 1400.0
+@export var buoyancy_force := 600.0
 @export var isAlive: bool
 
 var is_pressed: bool = false
@@ -23,14 +23,14 @@ func _physics_process(delta):
 	if is_pressed:
 		# when screen is pressed, jetski tries to go down
 		if global_position.y >= current_water_level:
-			velocity.y += (gravity - water_resistance) * delta
+			velocity.y += ((gravity / 1.25) - water_resistance) * delta
 		else:
-			velocity.y += gravity * delta
+			velocity.y += (gravity / 1.2) * delta
 	else:
 		if global_position.y >= current_water_level:
-			velocity.y -= buoyancy_force * delta
+			velocity.y -= buoyancy_force * delta * (global_position.y / 90) * 0.972
 		else:
-			velocity.y += gravity * delta
+			velocity.y += (gravity / 2.5) * delta
 	
 	# apply some air resistance to prevent infinite acceleration
 	velocity.y *= 0.98

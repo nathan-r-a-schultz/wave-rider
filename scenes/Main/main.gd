@@ -45,6 +45,7 @@ func _process(_delta):
 		totalScroll += scrollSpeed * _delta * distanceMultiplier
 		#scrollSpeed += int((scrollSpeed / 100)) * 0.01
 		Global.distance = int(totalScroll / 750)
+		#print("Scrollspeed: " + str(scrollSpeed) + "\nTotalscroll:" + str(totalScroll) + "\nDelta: " + str(_delta) + "\n-----------------")
 		
 func _transitionToGameOver():
 	scrollSpeed = 0
