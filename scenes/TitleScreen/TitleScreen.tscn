@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=10 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
 [ext_resource type="Texture2D" uid="uid://dt7oaoy07ra3u" path="res://assets/startbutton.png" id="1_trnkw"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
+[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="4_a88dj"]
+[ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="4_c6vk0"]
+[ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_u7spu"]
+[ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_mhitv"]
+[ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="9_wgmwj"]
+[ext_resource type="Script" uid="uid://rrjlujpv2g" path="res://scenes/TitleScreen/dummy_jetski.gd" id="10_u7spu"]
 
 [node name="TitleScreen" type="Node2D"]
 
@@ -17,14 +23,16 @@ script = ExtResource("1_1rn58")
 metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="TextureButton" parent="Control"]
+z_index = 15
+z_as_relative = false
 texture_filter = 1
 layout_mode = 0
-offset_left = 81.0
-offset_top = 17.0
-offset_right = 209.0
-offset_bottom = 145.0
+offset_left = 177.0
+offset_top = 23.0
+offset_right = 305.0
+offset_bottom = 87.0
 texture_normal = ExtResource("1_trnkw")
-stretch_mode = 0
+stretch_mode = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 texture_filter = 1
@@ -36,3 +44,57 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_1rn58")
 theme_override_font_sizes/normal_font_size = 7
 text = "Note: this is a prototype. Textures and gameplay are not final."
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sky" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+z_index = -1
+texture_filter = 1
+position = Vector2(160, 28)
+texture = ExtResource("4_c6vk0")
+
+[node name="Grass" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
+z_index = -1
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, 56)
+texture = ExtResource("5_u7spu")
+centered = false
+
+[node name="Beach" type="Parallax2D" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 69)
+texture = ExtResource("6_mhitv")
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.6)
+z_index = 5
+texture_filter = 1
+offset_top = 90.0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("4_a88dj")
+stretch_mode = 1
+
+[node name="DummyJetski" type="CharacterBody2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(79, 55)
+script = ExtResource("10_u7spu")
+
+[node name="Sprite2D" type="Sprite2D" parent="DummyJetski"]
+texture_filter = 1
+texture = ExtResource("9_wgmwj")
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="DummyJetski"]
+position = Vector2(-9, 12)
+scale = Vector2(1.17187, 0.782118)
+polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23.36, -12.9556, 19.0933, -4.00558, 3.73333, -4.00558, -7.36, -12.9556, -7.36, -20.6271, -3.94667, -20.6271, -2.24, -16.7914, 13.12, -16.7914)

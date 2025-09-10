@@ -10,6 +10,9 @@ var is_pressed: bool = false
 # the init function
 func _ready():
 	isAlive = true
+	if Global.jetskiInfo[0] != 0 and Global.jetskiInfo[1] != 0:
+		global_position.y = Global.jetskiInfo[0]
+		velocity.y = Global.jetskiInfo[1]
 
 # handles input
 func _input(event):

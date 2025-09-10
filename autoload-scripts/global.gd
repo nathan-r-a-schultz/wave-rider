@@ -1,11 +1,11 @@
 extends Node
 
+var totalCoins: int
 var currentScene = null
+var jetskiInfo := [0, 0]
 
 signal coins_changed(newCoins: int)
 signal distance_changed(newDistance: float)
-
-var totalCoins: int
 
 @export var currentCoins: int = 0:
 	set(value):
