@@ -43,7 +43,7 @@ func spawnTriggers():
 	var selection: int = rng.randi_range(0, deathGroups.size() - 1)
 	var deathPattern: Array = deathGroups[selection]
 	@warning_ignore("narrowing_conversion")
-	var yPosition: int = rng.randi_range(0, get_viewport_rect().size.y) # spawn at a random y coord
+	var yPosition: int = rng.randi_range(0, get_viewport_rect().size.y - len(deathPattern) * 12) # spawn at a random y coord
 	
 	# n^2 runtime but i'm never going to make a crazy complex death pattern so it's okay
 	for rowIndex in range(deathPattern.size()):
