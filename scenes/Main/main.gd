@@ -2,7 +2,7 @@ extends Node2D
 var coinGenerator: CoinGroups
 var triggerGenerator: DeathGroups
 
-@export var scrollSpeed := 100
+@export var scrollSpeed := 0
 
 var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
@@ -39,6 +39,10 @@ func _on_death_trigger_timer_timeout():
 	deathTriggerTimer.wait_time = rng.randf_range(2.5, 5.0)
 
 func _process(_delta):
+	
+	if (scrollSpeed < 100):
+		scrollSpeed += 100 * _delta
+	
 	if $Jetski.isAlive == false:
 		_transitionToGameOver()
 	else:
