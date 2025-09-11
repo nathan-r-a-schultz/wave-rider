@@ -29,6 +29,7 @@ position = Vector2(160, 90)
 
 [node name="Jetski" type="CharacterBody2D" parent="."]
 z_index = 10
+texture_filter = 1
 position = Vector2(79, 55)
 script = ExtResource("3_d463r")
 
@@ -137,6 +138,7 @@ offset_right = 362.0
 offset_bottom = 70.0
 scale = Vector2(0.25, 0.25)
 toggle_mode = true
+action_mode = 0
 texture_normal = ExtResource("9_yxg74")
 texture_pressed = ExtResource("10_gqpea")
 stretch_mode = 0
