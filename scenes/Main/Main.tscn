@@ -99,6 +99,7 @@ position = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_yxg74")
 
 [node name="GUI" type="Control" parent="."]
+z_index = 20
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0

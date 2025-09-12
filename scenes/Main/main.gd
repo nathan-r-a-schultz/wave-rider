@@ -2,7 +2,7 @@ extends Node2D
 var coinGenerator: CoinGroups
 var triggerGenerator: DeathGroups
 
-@export var scrollSpeed := 0
+@export var scrollSpeed := 0.0
 
 var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
