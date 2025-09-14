@@ -41,7 +41,7 @@ func _on_death_trigger_timer_timeout():
 func _process(_delta):
 	
 	if (scrollSpeed < 100):
-		scrollSpeed += 100 * _delta
+		scrollSpeed += 50 * _delta
 	
 	if $Jetski.isAlive == false:
 		_transitionToGameOver()

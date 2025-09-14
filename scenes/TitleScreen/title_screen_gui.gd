@@ -15,7 +15,6 @@ func _process(_delta):
 	$StartInfo.modulate = Color(1, 1, 1, (sin(radToTransparency) + 1) / 2)
 
 func _on_start_button_pressed():
-	print("pressed!")
 	var titleScreen = get_parent()
 	Global.jetskiInfo = [titleScreen.get_node("DummyJetski").exportedPosition, titleScreen.get_node("DummyJetski").exportedVelocity]
 	Global.currentCoins = 0
