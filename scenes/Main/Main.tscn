@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://dkhlnay0d1h5u" path="res://scenes/Main/death_groups.gd" id="11_1jtt4"]
 [ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
 [ext_resource type="Texture2D" uid="uid://d08tyr7nx05vo" path="res://assets/deathtrigger.png" id="11_yxg74"]
-[ext_resource type="Texture2D" uid="uid://hgqejtvhkc8f" path="res://assets/logo.png" id="16_iekte"]
+[ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="16_iekte"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxg74"]
 size = Vector2(12, 12)
@@ -48,11 +48,11 @@ polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23
 script = ExtResource("4_plsdc")
 
 [node name="Logo" type="TextureRect" parent="Background"]
-z_index = 30
+z_index = 5
 texture_filter = 1
-offset_left = 86.0
-offset_top = 20.0
-offset_right = 234.0
+offset_left = 83.0
+offset_top = 18.0
+offset_right = 237.0
 offset_bottom = 68.0
 texture = ExtResource("16_iekte")
 expand_mode = 1
@@ -60,15 +60,16 @@ expand_mode = 1
 [node name="StartInfo" type="RichTextLabel" parent="Background"]
 z_index = 30
 texture_filter = 1
-offset_left = 101.0
 offset_top = 135.0
-offset_right = 310.0
-offset_bottom = 157.0
+offset_right = 320.0
+offset_bottom = 149.0
 theme_override_colors/default_color = Color(1, 128.498, 0, 1)
 theme_override_fonts/normal_font = ExtResource("9_vup2a")
 theme_override_font_sizes/normal_font_size = 7
 theme_override_font_sizes/bold_font_size = 7
 text = "PRESS TO START"
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)

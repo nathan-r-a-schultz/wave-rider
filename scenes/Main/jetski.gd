@@ -13,7 +13,7 @@ func _ready():
 	if Global.jetskiInfo[0] != -1 and Global.jetskiInfo[1] != -1:
 		global_position.y = Global.jetskiInfo[0]
 		velocity.y = Global.jetskiInfo[-1]
-		Global.jetskiInfo = [-1, -1]
+		Global.jetskiInfo = [-1.0, -1.0]
 
 # handles input
 func _unhandled_input(event):

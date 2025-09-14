@@ -33,7 +33,7 @@ func _process(_delta):
 		$Logo.position.x -= 2 * main.scrollSpeed * _delta
 		$StartInfo.position.x -= 2 * main.scrollSpeed * _delta
 		
-		if $StartInfo.position.x <= -148:
+		if $Logo.position.x <=  -$Logo.size.x:
 			print('sjdfkjsdfh')
 			$Logo.queue_free()
 			$StartInfo.queue_free()

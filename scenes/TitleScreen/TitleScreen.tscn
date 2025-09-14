@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=10 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
-[ext_resource type="Script" uid="uid://bgv87mba11w3l" path="res://scenes/TitleScreen/background.gd" id="1_u7spu"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
 [ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="4_a88dj"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="4_c6vk0"]
-[ext_resource type="Texture2D" uid="uid://hgqejtvhkc8f" path="res://assets/logo.png" id="5_c6vk0"]
+[ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="5_c6vk0"]
 [ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_u7spu"]
 [ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_mhitv"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="9_wgmwj"]
@@ -14,7 +13,6 @@
 [node name="TitleScreen" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
-script = ExtResource("1_u7spu")
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 
@@ -57,9 +55,9 @@ stretch_mode = 1
 [node name="Logo" type="TextureRect" parent="Background"]
 z_index = 5
 texture_filter = 1
-offset_left = 86.0
-offset_top = 20.0
-offset_right = 234.0
+offset_left = 83.0
+offset_top = 18.0
+offset_right = 237.0
 offset_bottom = 68.0
 texture = ExtResource("5_c6vk0")
 expand_mode = 1
@@ -91,15 +89,17 @@ text = "Prototype v4/v5"
 [node name="StartInfo" type="RichTextLabel" parent="Control"]
 z_index = 30
 texture_filter = 1
-offset_left = 101.0
+layout_mode = 0
 offset_top = 135.0
-offset_right = 310.0
-offset_bottom = 157.0
+offset_right = 320.0
+offset_bottom = 149.0
 theme_override_colors/default_color = Color(1, 128.498, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_1rn58")
 theme_override_font_sizes/normal_font_size = 7
 theme_override_font_sizes/bold_font_size = 7
 text = "PRESS TO START"
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="StartButton" type="TextureButton" parent="Control"]
 z_index = 4096

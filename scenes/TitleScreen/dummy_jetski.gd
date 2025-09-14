@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var gravity := 800.0
 @export var water_resistance := 300.0
 @export var buoyancy_force := 600.0
-@export var exportedVelocity: int
-@export var exportedPosition: int
+@export var exportedVelocity: float
+@export var exportedPosition: float
 
 var rotation_speed := 3.0
 var max_rotation_angle := 15.0 

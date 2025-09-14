@@ -2,7 +2,7 @@ extends Node
 
 var totalCoins: int
 var currentScene = null
-var jetskiInfo := [-1, -1]
+var jetskiInfo := [-1.0, -1.0]
 var titleInfo := [-1]
 
 signal coins_changed(newCoins: int)
