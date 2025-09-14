@@ -20,12 +20,12 @@ func _ready():
 	triggerGenerator = DeathGroups.new()
 	add_child(triggerGenerator)
 	
-	coinTimer.wait_time = rng.randf_range(1.0, 2.5)
+	coinTimer.wait_time = rng.randf_range(2.5, 5.0)
 	coinTimer.timeout.connect(_on_coin_timer_timeout)
 	coinTimer.autostart = true
 	add_child(coinTimer)
 	
-	deathTriggerTimer.wait_time = rng.randf_range(1.0, 2.5)
+	deathTriggerTimer.wait_time = rng.randf_range(2.5, 5.0)
 	deathTriggerTimer.timeout.connect(_on_death_trigger_timer_timeout)
 	deathTriggerTimer.autostart = true
 	add_child(deathTriggerTimer)
@@ -41,7 +41,7 @@ func _on_death_trigger_timer_timeout():
 func _process(_delta):
 	
 	if (scrollSpeed < 100):
-		scrollSpeed += 50 * _delta
+		scrollSpeed += 33 * _delta
 	
 	if $Jetski.isAlive == false:
 		_transitionToGameOver()

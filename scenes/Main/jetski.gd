@@ -4,16 +4,16 @@ extends CharacterBody2D
 @export var buoyancy_force := 600.0
 @export var isAlive: bool
 var rotation_speed := 3.0
-var max_rotation_angle := 15.0 
+var max_rotation_angle := 18.0 
 var is_pressed: bool = false
 
 # the init function
 func _ready():
 	isAlive = true
-	if Global.jetskiInfo[0] != 0 and Global.jetskiInfo[1] != 0:
+	if Global.jetskiInfo[0] != -1 and Global.jetskiInfo[1] != -1:
 		global_position.y = Global.jetskiInfo[0]
-		velocity.y = Global.jetskiInfo[1]
-		Global.jetskiInfo = [0, 0]
+		velocity.y = Global.jetskiInfo[-1]
+		Global.jetskiInfo = [-1, -1]
 
 # handles input
 func _unhandled_input(event):
