@@ -4,11 +4,14 @@ var triggerGenerator: DeathGroups
 
 @export var scrollSpeed := 0.0
 
+signal shakeCamera()
+
 var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var totalScroll := 0.0
 var distanceMultiplier := 25
+var shaken = false
 
 func _ready():
 	
@@ -44,9 +47,13 @@ func _process(_delta):
 		scrollSpeed += 33.33 * _delta
 	
 	if $Jetski.isAlive == false:
-		if (scrollSpeed > 0.0):
+		
+		if (scrollSpeed > 0.0 and $Jetski.position.y < get_viewport_rect().size.y - 9):
 			scrollSpeed -= 33.33 * _delta
 		else:
+			if shaken == false:
+				shakeCamera.emit()
+				shaken = true
 			scrollSpeed = 0.0
 			await get_tree().create_timer(1.0).timeout
 			_transitionToGameOver()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=23 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
+[ext_resource type="Script" uid="uid://dantprk21f8vv" path="res://scenes/Main/camera_2d.gd" id="2_ymilf"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
 [ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Main/background.gd" id="4_plsdc"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="4_q8kdv"]
@@ -29,6 +30,7 @@ script = ExtResource("1_d463r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
+script = ExtResource("2_ymilf")
 
 [node name="Jetski" type="CharacterBody2D" parent="."]
 z_index = 10

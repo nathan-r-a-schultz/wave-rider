@@ -57,6 +57,9 @@ func _physics_process(delta):
 		
 	rotation = lerp_angle(rotation, target_rotation, rotation_speed * delta * (1.0 if isAlive else 2.0))
 	
+	if !isAlive and position.y > get_viewport_rect().size.y - 20:
+		rotation = deg_to_rad(max_rotation_angle)
+	
 	# keep jetski within bounds
 	# note: kinda have to hardcode the value '9' until i can find a proper way to get the jetski's height
 	var screen_height = get_viewport_rect().size.y
