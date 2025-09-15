@@ -29,7 +29,7 @@ func initialize(xPosition, id):
 func setCollisionWidth(value):
 	
 	var size = collision.shape.size
-	var newSize = Vector2(value, size.y / 2)
+	var newSize = Vector2(value / 8, size.y / 2)
 	collision.shape.size = newSize
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

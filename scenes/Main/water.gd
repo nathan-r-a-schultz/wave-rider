@@ -1,45 +1,13 @@
 extends Node2D
 
-@onready var main = get_parent().get_parent().get_parent()
-@export var waterHeight := 326.0
-
-var waterRects: Array[TextureRect] = []
-const WATER_TEXTURE = preload("res://assets/water.png")
-
 func _ready():
-	position.y = get_viewport_rect().size.y / 2
+	var rearLayer = $RearLayer/WaterPolygon
+	var frontLayer = $FrontLayer/WaterPolygon
 	
-	setupScrollingWaterRects()
-	
-func setupScrollingWaterRects():
-	
-	for i in range(3):
-		var textureRect = TextureRect.new()
-		add_child(textureRect)
+	if rearLayer and rearLayer.material:
+		rearLayer.material = rearLayer.material.duplicate()
+		rearLayer.material.set_shader_parameter("opacity", 1.0)
 		
-		textureRect.texture = WATER_TEXTURE
-		textureRect.stretch_mode = TextureRect.STRETCH_TILE
-		textureRect.size = Vector2(get_viewport_rect().size.x, (get_viewport_rect().size.y / 2))
-		textureRect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		textureRect.position.x = i * get_viewport_rect().size.x
-		textureRect.modulate = Color(1, 1, 1, 0.6) # make translucent
-		
-		waterRects.append(textureRect)
-		
-func _process(delta):
-	for rect in waterRects:
-		
-		rect.position.x -= main.scrollSpeed * delta
-		
-		if rect.position.x + rect.size.x < 0: 
-			rect.position.x = findRightMostRectPosition() + get_viewport_rect().size.x
-		
-		if (rect.position.x > get_viewport_rect().size.x * 2):
-				rect.position.x -= main.scrollSpeed * delta
-			
-func findRightMostRectPosition():
-	var rightmost = -999999.0
-	
-	for rect in waterRects:
-		rightmost = max(rightmost, rect.position.x)
-	return rightmost
+	if frontLayer and frontLayer.material:
+		frontLayer.material = frontLayer.material.duplicate()
+		frontLayer.material.set_shader_parameter("opacity", 0.3)

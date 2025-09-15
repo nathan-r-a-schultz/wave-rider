@@ -6,7 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p28og"]
 shader = ExtResource("2_l4i52")
-shader_parameter/tint = Color(0, 0.819608, 0.901961, 1)
+shader_parameter/tint = Color(0, 0.6, 1, 1)
+shader_parameter/opacity = 0.3
 
 [sub_resource type="Curve2D" id="Curve2D_qb6vy"]
 
