@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var main = get_parent().get_parent()
+@onready var main = get_parent().get_parent().get_parent()
 @export var waterHeight := 326.0
 
 var waterRects: Array[TextureRect] = []
