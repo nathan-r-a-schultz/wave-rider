@@ -74,7 +74,6 @@ horizontal_alignment = 1
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-20, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1
@@ -84,7 +83,6 @@ texture = ExtResource("5_72nt1")
 
 [node name="Grass" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-30, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
 z_index = -1
@@ -96,7 +94,6 @@ centered = false
 
 [node name="Beach" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-40, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
 z_index = -1

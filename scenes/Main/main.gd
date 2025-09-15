@@ -40,11 +40,16 @@ func _on_death_trigger_timer_timeout():
 
 func _process(_delta):
 	
-	if (scrollSpeed < 100):
-		scrollSpeed += 33 * _delta
+	if (scrollSpeed < 100 and $Jetski.isAlive == true):
+		scrollSpeed += 33.33 * _delta
 	
 	if $Jetski.isAlive == false:
-		_transitionToGameOver()
+		if (scrollSpeed > 0.0):
+			scrollSpeed -= 33.33 * _delta
+		else:
+			scrollSpeed = 0.0
+			await get_tree().create_timer(1.0).timeout
+			_transitionToGameOver()
 	else:
 		totalScroll += scrollSpeed * _delta * distanceMultiplier
 		#scrollSpeed += int((scrollSpeed / 100)) * 0.01
@@ -52,8 +57,8 @@ func _process(_delta):
 		#print("Scrollspeed: " + str(scrollSpeed) + "\nTotalscroll:" + str(totalScroll) + "\nDelta: " + str(_delta) + "\n-----------------")
 		
 func _transitionToGameOver():
-	scrollSpeed = 0
+
 	coinTimer.paused = true
 	deathTriggerTimer.paused = true
 	Global.totalCoins += Global.currentCoins
-	Global.goToScene("res://scenes/GameOver/GameOver.tscn")
+	

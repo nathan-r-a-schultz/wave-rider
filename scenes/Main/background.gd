@@ -17,14 +17,30 @@ func _ready():
 
 func _process(_delta):
 	
-	if $Sky.autoscroll[0] > -20:
-		$Sky.autoscroll[0] = -20 * (main.scrollSpeed / 100)
+	# to anyone reading this code: these if statements are sooooo janky
+	# i have no idea why the parallax layers speed up at the same rate as the water but don't do that for slowing down
+	# luckily i've fixed it with this wacky solution
+	if $Sky.autoscroll[0] > -(main.scrollSpeed * 0.2) and main.get_node("Jetski").isAlive:
+		$Sky.autoscroll[0] -= main.scrollSpeed * _delta
+	elif main.scrollSpeed == 0:
+		$Sky.autoscroll[0] = 0
+	elif not main.get_node("Jetski").isAlive and $Sky.autoscroll[0] < -(main.scrollSpeed * 0.2):
+		$Sky.autoscroll[0] += (main.scrollSpeed * _delta)
+
+	if $Grass.autoscroll[0] > -(main.scrollSpeed * 0.3) and main.get_node("Jetski").isAlive:
+		$Grass.autoscroll[0] -= main.scrollSpeed * _delta
+	elif main.scrollSpeed == 0:
+		$Grass.autoscroll[0] = 0
+	elif not main.get_node("Jetski").isAlive and $Grass.autoscroll[0] < -(main.scrollSpeed * 0.3):
+		$Grass.autoscroll[0] += (main.scrollSpeed * _delta)
+
+	if $Beach.autoscroll[0] > -(main.scrollSpeed * 0.4) and main.get_node("Jetski").isAlive:
+		$Beach.autoscroll[0] -= main.scrollSpeed * _delta
+	elif main.scrollSpeed == 0:
+		$Beach.autoscroll[0] = 0
+	elif not main.get_node("Jetski").isAlive and $Beach.autoscroll[0] < -(main.scrollSpeed * 0.4):
+		$Beach.autoscroll[0] += (main.scrollSpeed * _delta)
 		
-	if $Grass.autoscroll[0] > -30:
-		$Grass.autoscroll[0] = -30 * (main.scrollSpeed / 100)
-		
-	if $Beach.autoscroll[0] > -40:
-		$Beach.autoscroll[0] = -40 * (main.scrollSpeed / 100)
 		
 	if Global.titleInfo[0] != -1:
 		radToTransparency += PI * _delta
@@ -34,7 +50,6 @@ func _process(_delta):
 		$StartInfo.position.x -= 2 * main.scrollSpeed * _delta
 		
 		if $Logo.position.x <=  -$Logo.size.x:
-			print('sjdfkjsdfh')
 			$Logo.queue_free()
 			$StartInfo.queue_free()
 			Global.titleInfo = [-1]

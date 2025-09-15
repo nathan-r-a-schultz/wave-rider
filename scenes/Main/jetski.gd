@@ -30,6 +30,12 @@ func _physics_process(delta):
 			velocity.y += ((gravity / 1.25) - water_resistance) * delta
 		else:
 			velocity.y += gravity * delta
+	elif !isAlive:
+		if global_position.y >= current_water_level:
+			velocity.y += ((gravity / 2.5)) * delta
+			max_rotation_angle = 30
+		else:
+			velocity.y += gravity * delta * 0.5
 	else:
 		if global_position.y >= current_water_level:
 			velocity.y -= buoyancy_force * delta * (global_position.y / 90) * 0.972
@@ -37,7 +43,7 @@ func _physics_process(delta):
 			velocity.y += (gravity / 2.5) * delta
 			
 	var distance_from_water = abs(global_position.y - current_water_level)
-	if distance_from_water < 1:
+	if distance_from_water < 1 and isAlive:
 		var surface_damping = 0.89
 		velocity.y *= surface_damping
 	else:
@@ -49,7 +55,7 @@ func _physics_process(delta):
 	elif velocity.y < -20:
 		target_rotation = deg_to_rad(-max_rotation_angle)
 		
-	rotation = lerp_angle(rotation, target_rotation, rotation_speed * delta)
+	rotation = lerp_angle(rotation, target_rotation, rotation_speed * delta * (1.0 if isAlive else 2.0))
 	
 	# keep jetski within bounds
 	# note: kinda have to hardcode the value '9' until i can find a proper way to get the jetski's height
@@ -60,9 +66,8 @@ func _physics_process(delta):
 	elif global_position.y > screen_height - 9:
 		global_position.y = screen_height - 9
 		velocity.y = min(velocity.y, 0)
-	
-	if isAlive == true:
-		move_and_slide()
+
+	move_and_slide()
 
 func setAlive(status: bool):
 	isAlive = status

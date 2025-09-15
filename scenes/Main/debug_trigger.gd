@@ -10,4 +10,3 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Jetski" and jetskiNode.isAlive == true:
 		jetskiNode.setAlive(false)
-		queue_free()
