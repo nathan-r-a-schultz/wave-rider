@@ -20,7 +20,6 @@ var nextSpringIndex = 0
 var rightmostSpringX = 0
 
 func _ready():
-	# Find main node
 	for child in get_tree().root.get_children():
 		if child.name == "Main":
 			main = child
@@ -32,7 +31,6 @@ func _ready():
 	
 	waterBorder.width = borderThickness
 	
-	# Initialize springs
 	for i in range(springNumber):
 		spawn_spring(distanceBetweenSprings * i + global_position.x, nextSpringIndex)
 		nextSpringIndex += 1
@@ -44,11 +42,9 @@ func spawn_spring(x_position: float, index: int):
 	w.initialize(x_position, index)
 	w.setCollisionWidth(distanceBetweenSprings)
 	
-	# Connect signal with error checking
 	if w.has_signal("splash"):
 		w.splash.connect(splash)
 	
-	# Update rightmost position
 	if x_position > rightmostSpringX:
 		rightmostSpringX = x_position
 
@@ -56,7 +52,6 @@ func _physics_process(_delta):
 	if main == null:
 		return
 	
-	# Remove springs that are off-screen (iterate backwards)
 	for i in range(springs.size() - 1, -1, -1):
 		if springs[i] == null or not is_instance_valid(springs[i]):
 			springs.remove_at(i)
@@ -65,18 +60,14 @@ func _physics_process(_delta):
 		springs[i].waterUpdate(k, d)
 		springs[i].global_position.x -= main.scrollSpeed * _delta
 		
-		# Remove springs that are far off-screen to the left
 		if springs[i].global_position.x < global_position.x - distanceBetweenSprings * 2:
 			var spring_to_remove = springs[i]
-			# Disconnect signal before removing
 			if spring_to_remove.has_signal("splash") and spring_to_remove.splash.is_connected(splash):
 				spring_to_remove.splash.disconnect(splash)
 			springs.remove_at(i)
 			spring_to_remove.queue_free()
 	
-	# Spawn new springs on the right side as needed
 	if springs.size() > 0:
-		# Find the rightmost spring
 		var rightmost_spring = null
 		var rightmost_x = -INF
 		
@@ -85,22 +76,18 @@ func _physics_process(_delta):
 				rightmost_x = spring.global_position.x
 				rightmost_spring = spring
 		
-		# Spawn new springs if we need more on the right
 		var screen_right = global_position.x + get_viewport().get_visible_rect().size.x + distanceBetweenSprings
 		while rightmost_x < screen_right:
 			rightmost_x += distanceBetweenSprings
 			spawn_spring(rightmost_x, nextSpringIndex)
 			nextSpringIndex += 1
 	
-	# Safety check - ensure we have springs left
 	if springs.size() == 0:
-		# Respawn initial springs if all are gone
 		for i in range(springNumber):
 			spawn_spring(global_position.x + distanceBetweenSprings * i, nextSpringIndex)
 			nextSpringIndex += 1
 		return
 	
-	# Wave propagation
 	var leftDeltas = []
 	var rightDeltas = []
 	
@@ -110,12 +97,10 @@ func _physics_process(_delta):
 	
 	for j in range(passes):
 		for i in range(springs.size()):
-			# Left propagation
 			if i > 0 and is_instance_valid(springs[i]) and is_instance_valid(springs[i-1]):
 				leftDeltas[i] = spread * (springs[i].height - springs[i - 1].height)
 				springs[i - 1].velocity += leftDeltas[i]
 			
-			# Right propagation
 			if i < springs.size() - 1 and is_instance_valid(springs[i]) and is_instance_valid(springs[i+1]):
 				rightDeltas[i] = spread * (springs[i].height - springs[i + 1].height)
 				springs[i + 1].velocity += rightDeltas[i]
@@ -124,7 +109,7 @@ func _physics_process(_delta):
 
 func update_visuals():
 	new_border()
-	draw_water_body()
+	draw_water_body(bottom, Vector2(0.75, 0.75))
 
 func splash(index, speed):
 	for i in range(springs.size()):
@@ -132,27 +117,52 @@ func splash(index, speed):
 			springs[i].velocity += speed
 			break
 
-func draw_water_body():
+func draw_water_body(bottom, uv_scale) -> void:
 	if waterBorder.curve == null:
 		return
-		
+
 	var curve = waterBorder.curve
-	var points = Array(curve.get_baked_points())
-	
+	var points: Array = Array(curve.get_baked_points())
+
 	if points.size() < 2:
 		return
-		
-	var waterPolygonPoints = points.duplicate()
-	
-	var firstIndex = 0
-	var lastIndex = waterPolygonPoints.size() - 1
-	
-	# Create the bottom of the water body
+
+	var waterPolygonPoints: Array = points.duplicate()
+
+	var firstIndex := 0
+	var lastIndex := waterPolygonPoints.size() - 1
+
 	waterPolygonPoints.append(Vector2(waterPolygonPoints[lastIndex].x, bottom))
 	waterPolygonPoints.append(Vector2(waterPolygonPoints[firstIndex].x, bottom))
-	
-	waterPolygonPoints = PackedVector2Array(waterPolygonPoints)
-	waterPolygon.set_polygon(waterPolygonPoints)
+
+	var polygon: PackedVector2Array = PackedVector2Array(waterPolygonPoints)
+	waterPolygon.set_polygon(polygon)
+
+	generate_uvs(polygon, uv_scale)
+
+
+func generate_uvs(polygon_points: PackedVector2Array, uv_scale: Vector2) -> void:
+	if polygon_points.size() < 2:
+		return
+
+	var uvs := PackedVector2Array()
+
+	var distances := []
+	var total_dist := 0.0
+	distances.append(total_dist)
+	for i in range(1, polygon_points.size()):
+		total_dist += polygon_points[i].distance_to(polygon_points[i - 1])
+		distances.append(total_dist)
+
+	for i in range(polygon_points.size()):
+		var point = polygon_points[i]
+
+		var u = (distances[i] / uv_scale.x)
+		var v = (point.y / uv_scale.y)
+
+		uvs.append(Vector2(u, v))
+
+	waterPolygon.set_uv(uvs)
 
 func new_border():
 	if springs.size() == 0:
@@ -160,7 +170,7 @@ func new_border():
 		
 	var curve = Curve2D.new()
 	
-	# Sort springs by x position to ensure proper curve order
+
 	var sorted_springs = springs.duplicate()
 	sorted_springs.sort_custom(func(a, b): return a.global_position.x < b.global_position.x)
 	

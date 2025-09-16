@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6k6mwbbr5xrq"]
+[gd_scene load_steps=7 format=3 uid="uid://c6k6mwbbr5xrq"]
 
 [ext_resource type="Script" uid="uid://cufpba3lx3umf" path="res://scenes/WaterBody/water_body.gd" id="1_p28og"]
 [ext_resource type="Shader" uid="uid://cl2jtu16jxnge" path="res://scenes/WaterBody/water_test.gdshader" id="2_l4i52"]
 [ext_resource type="Script" uid="uid://bv5urju0653fk" path="res://scenes/WaterBody/smooth_path_modified.gd" id="3_p28og"]
+[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="3_qb6vy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p28og"]
 shader = ExtResource("2_l4i52")
 shader_parameter/tint = Color(0, 0.6, 1, 1)
 shader_parameter/opacity = 0.3
+shader_parameter/my_texture = ExtResource("3_qb6vy")
+shader_parameter/tint_strength = 0.0
 
 [sub_resource type="Curve2D" id="Curve2D_qb6vy"]
 
@@ -19,6 +22,7 @@ script = ExtResource("1_p28og")
 texture_filter = 1
 material = SubResource("ShaderMaterial_p28og")
 color = Color(0.607843, 0.831373, 1, 0.152941)
+texture = ExtResource("3_qb6vy")
 
 [node name="WaterBorder" type="Path2D" parent="."]
 texture_filter = 1
