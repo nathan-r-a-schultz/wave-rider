@@ -4,6 +4,7 @@ var totalCoins: int
 var currentScene = null
 var jetskiInfo := [-1.0, -1.0]
 var titleInfo := [-1]
+var scrollSpeed := 0.0
 
 signal coins_changed(newCoins: int)
 signal distance_changed(newDistance: float)
@@ -35,3 +36,9 @@ func _deferred_goto_scene(path):
 	
 	oldScene.free()
 	get_tree().root.add_child(currentScene)
+	
+func setScrollSpeed(newScrollSpeed: float):
+	self.scrollSpeed = newScrollSpeed
+	
+func getScrollSpeed():
+	return(self.scrollSpeed)
