@@ -50,11 +50,13 @@ func _process(_delta):
 		
 		if (scrollSpeed > 0.0 and $Jetski.position.y < get_viewport_rect().size.y - 9):
 			scrollSpeed -= 33.33 * _delta
+			Global.setScrollSpeed(scrollSpeed)
 		else:
 			if shaken == false:
 				shakeCamera.emit()
 				shaken = true
 			scrollSpeed = 0.0
+			Global.setScrollSpeed(scrollSpeed)
 			await get_tree().create_timer(1.0).timeout
 			_transitionToGameOver()
 	else:
