@@ -126,14 +126,14 @@ script = ExtResource("1_pkilc")
 z_as_relative = false
 position = Vector2(0, 90)
 distanceBetweenSprings = 24
-springNumber = 14
+springNumber = 22
 
 [node name="FrontLayer" parent="Background/Water" instance=ExtResource("2_qi5dh")]
 z_index = 12
 z_as_relative = false
 position = Vector2(0, 90)
 distanceBetweenSprings = 24
-springNumber = 14
+springNumber = 22
 
 [node name="CoinGroups" type="Node2D" parent="."]
 z_index = 10

@@ -6,6 +6,7 @@ extends Node2D
 @export var springNumber = 6
 @export var depth = 1000
 @export var borderThickness = 0.6
+@export var offset := 5
 
 @onready var waterSpring = preload("res://Scenes/WaterBody/water_spring.tscn")
 @onready var waterPolygon = $WaterPolygon
@@ -20,7 +21,7 @@ var main = null
 var nextSpringIndex = 0
 var rightmostSpringX = 0
 var uv_offset := 0.0
-
+var totalId := 0
 
 func _ready():
 	targetHeight = global_position.y
@@ -29,9 +30,6 @@ func _ready():
 		if child.name == "Main":
 			main = child
 			break
-	if main == null:
-		push_error("Main node not found!")
-		return
 	waterBorder.width = borderThickness
 	for i in range(springNumber):
 		spawn_spring(distanceBetweenSprings * i + global_position.x, nextSpringIndex)
@@ -39,18 +37,17 @@ func _ready():
 
 func spawn_spring(x_position: float, index: int):
 	var w = waterSpring.instantiate()
+	totalId += 1
 	add_child(w)
-	springs.append(w)
-	w.initialize(x_position, index)
+	w.initialize(x_position, index, totalId, offset)
 	w.setCollisionWidth(distanceBetweenSprings)
+	springs.append(w)
 	if w.has_signal("splash") and not w.splash.is_connected(splash):
 		w.splash.connect(splash)
 	if x_position > rightmostSpringX:
 		rightmostSpringX = x_position
 
 func _physics_process(_delta):
-	if main == null:
-		return
 		
 	uv_offset += Global.getScrollSpeed() * _delta
 
@@ -61,7 +58,8 @@ func _physics_process(_delta):
 		if not is_instance_valid(springs[i]):
 			springs.remove_at(i)
 			continue
-		springs[i].waterUpdate(k, d)
+		if i < springs.size() - 1:
+			springs[i].waterUpdate(k, d)
 		springs[i].global_position.x -= main.scrollSpeed * _delta
 		if springs[i].global_position.x < global_position.x - distanceBetweenSprings * 2:
 			var spring_to_remove = springs[i]
@@ -92,7 +90,7 @@ func _physics_process(_delta):
 		rightDeltas.append(0)
 	
 	for j in range(passes):
-		for i in range(springs.size()):
+		for i in range(springs.size() - 4):
 			if i > 0 and is_instance_valid(springs[i]) and is_instance_valid(springs[i-1]):
 				leftDeltas[i] = spread * (springs[i].height - springs[i - 1].height)
 				springs[i - 1].velocity += leftDeltas[i]
@@ -129,6 +127,7 @@ func draw_water_body(bottom, uv_scale) -> void:
 	generate_uvs(polygon, uv_scale)
 
 func generate_uvs(polygon_points: PackedVector2Array, uv_scale: Vector2) -> void:
+	#print(str(polygon_points) + "\n------------------------------------")
 	if polygon_points.size() < 2:
 		return
 	var uvs := PackedVector2Array()
