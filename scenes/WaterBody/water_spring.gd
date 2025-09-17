@@ -5,6 +5,7 @@ var height = 0
 var targetHeight = 0
 var index = 0
 var motionFactor = 0.01
+var offset = 0.0
 signal splash
 @onready var collision = $Area2D/CollisionShape2D
 
@@ -18,13 +19,17 @@ func waterUpdate(springConstant, dampening):
 	velocity += force
 	position.y += velocity
 	
-func initialize(xPosition, id, totalId, offset):
+func initialize(xPosition, id, totalId, yOffset):
+	
+	offset = yOffset
 	
 	if (totalId % 2 == 0):
-		global_position.y += offset
+		offset *= 1
 	else:
-		global_position.y -= offset
+		offset *= -1
 	
+	
+	global_position.y += offset
 	height = global_position.y
 	targetHeight = global_position.y
 	global_position.x = xPosition

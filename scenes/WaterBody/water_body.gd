@@ -6,7 +6,7 @@ extends Node2D
 @export var springNumber = 6
 @export var depth = 1000
 @export var borderThickness = 0.6
-@export var offset := 5
+@export var offset := 2
 
 @onready var waterSpring = preload("res://Scenes/WaterBody/water_spring.tscn")
 @onready var waterPolygon = $WaterPolygon
@@ -90,12 +90,12 @@ func _physics_process(_delta):
 		rightDeltas.append(0)
 	
 	for j in range(passes):
-		for i in range(springs.size() - 4):
+		for i in range(springs.size()):
 			if i > 0 and is_instance_valid(springs[i]) and is_instance_valid(springs[i-1]):
-				leftDeltas[i] = spread * (springs[i].height - springs[i - 1].height)
+				leftDeltas[i] = spread * ((springs[i].global_position.y - springs[i - 1].global_position.y) - (springs[i].offset - springs[i - 1].offset))
 				springs[i - 1].velocity += leftDeltas[i]
 			if i < springs.size() - 1 and is_instance_valid(springs[i]) and is_instance_valid(springs[i+1]):
-				rightDeltas[i] = spread * (springs[i].height - springs[i + 1].height)
+				rightDeltas[i] = spread * ((springs[i].global_position.y - springs[i + 1].global_position.y) - (springs[i].offset - springs[i + 1].offset))
 				springs[i + 1].velocity += rightDeltas[i]
 	
 	update_visuals()
