@@ -22,7 +22,7 @@ func _unhandled_input(event):
 
 # physics yuh
 func _physics_process(delta):
-	var current_water_level = (get_viewport_rect().size.y / 2) - 5
+	var current_water_level = (get_viewport_rect().size.y / 2) - 4
 	
 	if is_pressed:
 		# when screen is pressed, jetski tries to go down
