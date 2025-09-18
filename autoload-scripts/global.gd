@@ -24,17 +24,32 @@ func _ready():
 	currentScene = root.get_child(-1)
 	
 func goToScene(path):
-	_deferred_goto_scene.call_deferred(path)
+	goto_scene.call_deferred(path)
 	
-func _deferred_goto_scene(path):
+func goto_scene(path):
 	var root = get_tree().root
 	currentScene = root.get_child(-1)
-	
 	var oldScene = currentScene
 	var newScene = ResourceLoader.load(path)
-	currentScene = newScene.instantiate()
 	
-	oldScene.free()
+	var waterNode = null
+	if oldScene.name == "TitleScreen" and newScene.resource_path.get_file().get_basename() == "Main":
+		var titleBackground = oldScene.get_node("Background")
+		if titleBackground and titleBackground.has_node("Water"):
+			waterNode = titleBackground.get_node("Water")
+			titleBackground.remove_child(waterNode)
+	
+	var newSceneInstance = newScene.instantiate()
+
+	if waterNode:
+		var mainBackground = newSceneInstance.get_node("Background")
+		if mainBackground:
+			if mainBackground.has_node("Water"):
+				mainBackground.get_node("Water").queue_free()
+			mainBackground.add_child(waterNode)
+	
+	currentScene = newSceneInstance
+	oldScene.queue_free()
 	get_tree().root.add_child(currentScene)
 	
 func setScrollSpeed(newScrollSpeed: float):

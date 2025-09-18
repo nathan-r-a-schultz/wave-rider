@@ -120,20 +120,19 @@ centered = false
 
 [node name="Water" type="Node2D" parent="Background"]
 z_as_relative = false
+position = Vector2(-16, 0)
 script = ExtResource("1_pkilc")
 
 [node name="RearLayer" parent="Background/Water" instance=ExtResource("2_qi5dh")]
 z_as_relative = false
 position = Vector2(0, 90)
-distanceBetweenSprings = 24
-springNumber = 22
+springNumber = 16
 
 [node name="FrontLayer" parent="Background/Water" instance=ExtResource("2_qi5dh")]
 z_index = 12
 z_as_relative = false
 position = Vector2(0, 90)
-distanceBetweenSprings = 24
-springNumber = 22
+springNumber = 16
 
 [node name="CoinGroups" type="Node2D" parent="."]
 z_index = 10

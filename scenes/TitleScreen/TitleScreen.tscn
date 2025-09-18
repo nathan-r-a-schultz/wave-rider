@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
-[ext_resource type="Texture2D" uid="uid://ctkjk804454re" path="res://assets/water.png" id="4_a88dj"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="4_c6vk0"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="5_c6vk0"]
+[ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="5_mhitv"]
 [ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_u7spu"]
 [ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_mhitv"]
-[ext_resource type="Texture2D" uid="uid://d1vo7gj4v6ehw" path="res://assets/blue.png" id="6_u7spu"]
+[ext_resource type="PackedScene" uid="uid://c6k6mwbbr5xrq" path="res://scenes/WaterBody/water_body.tscn" id="6_y56is"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="9_wgmwj"]
 [ext_resource type="Script" uid="uid://rrjlujpv2g" path="res://scenes/TitleScreen/dummy_jetski.gd" id="10_u7spu"]
 
@@ -34,6 +34,7 @@ texture = ExtResource("5_u7spu")
 centered = false
 
 [node name="Beach" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(320, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
 z_index = -1
@@ -42,16 +43,19 @@ position = Vector2(0, 69)
 texture = ExtResource("6_mhitv")
 centered = false
 
-[node name="Water" type="TextureRect" parent="Background"]
-modulate = Color(1, 1, 1, 0.6)
-z_index = 5
-z_as_relative = false
+[node name="Sprite2D2" type="Sprite2D" parent="Background/Beach"]
+z_index = -1
 texture_filter = 1
-offset_top = 90.0
-offset_right = 320.0
-offset_bottom = 180.0
-texture = ExtResource("4_a88dj")
-stretch_mode = 1
+position = Vector2(-1, 90)
+texture = ExtResource("6_mhitv")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background/Beach"]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 111)
+texture = ExtResource("6_mhitv")
+centered = false
 
 [node name="Logo" type="TextureRect" parent="Background"]
 z_index = 5
@@ -63,13 +67,21 @@ offset_bottom = 68.0
 texture = ExtResource("5_c6vk0")
 expand_mode = 1
 
-[node name="Blue" type="TextureRect" parent="Background"]
-z_index = -5
-offset_top = 90.0
-offset_right = 320.0
-offset_bottom = 180.0
-texture = ExtResource("6_u7spu")
-expand_mode = 1
+[node name="Water" type="Node2D" parent="Background"]
+z_as_relative = false
+position = Vector2(-16, 0)
+script = ExtResource("5_mhitv")
+
+[node name="RearLayer" parent="Background/Water" instance=ExtResource("6_y56is")]
+z_as_relative = false
+position = Vector2(0, 90)
+springNumber = 16
+
+[node name="FrontLayer" parent="Background/Water" instance=ExtResource("6_y56is")]
+z_index = 12
+z_as_relative = false
+position = Vector2(0, 90)
+springNumber = 16
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -82,6 +94,7 @@ script = ExtResource("1_1rn58")
 metadata/_edit_use_anchors_ = true
 
 [node name="VersionInfo" type="RichTextLabel" parent="Control"]
+visible = false
 z_index = 20
 z_as_relative = false
 texture_filter = 1

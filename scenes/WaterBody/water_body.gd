@@ -6,7 +6,9 @@ extends Node2D
 @export var springNumber = 6
 @export var depth = 1000
 @export var borderThickness = 0.6
-@export var offset := 2
+@export var wave_amplitude: float = 1
+@export var wave_length: float = 180.0
+@export var wave_speed: float = 200.0
 
 @onready var waterSpring = preload("res://Scenes/WaterBody/water_spring.tscn")
 @onready var waterPolygon = $WaterPolygon
@@ -14,7 +16,7 @@ extends Node2D
 
 var springs = []
 var passes = 8
-var spread = 0.0003
+var spread = 0.003
 var targetHeight = 0.0
 var bottom = 0.0
 var main = null
@@ -22,6 +24,7 @@ var nextSpringIndex = 0
 var rightmostSpringX = 0
 var uv_offset := 0.0
 var totalId := 0
+var time: float = 0.0
 
 func _ready():
 	targetHeight = global_position.y
@@ -35,11 +38,11 @@ func _ready():
 		spawn_spring(distanceBetweenSprings * i + global_position.x, nextSpringIndex)
 		nextSpringIndex += 1
 
-func spawn_spring(x_position: float, index: int):
+func spawn_spring(x_position, index):
 	var w = waterSpring.instantiate()
 	totalId += 1
 	add_child(w)
-	w.initialize(x_position, index, totalId, offset)
+	w.initialize(x_position, index, get_wave_y(x_position), d, time, wave_length, wave_speed, wave_amplitude)
 	w.setCollisionWidth(distanceBetweenSprings)
 	springs.append(w)
 	if w.has_signal("splash") and not w.splash.is_connected(splash):
@@ -48,7 +51,10 @@ func spawn_spring(x_position: float, index: int):
 		rightmostSpringX = x_position
 
 func _physics_process(_delta):
+	
+	time += _delta
 		
+	wave_speed = Global.scrollSpeed * 2
 	uv_offset += Global.getScrollSpeed() * _delta
 
 	if uv_offset > 1000000.0:
@@ -58,9 +64,8 @@ func _physics_process(_delta):
 		if not is_instance_valid(springs[i]):
 			springs.remove_at(i)
 			continue
-		if i < springs.size() - 1:
-			springs[i].waterUpdate(k, d)
-		springs[i].global_position.x -= main.scrollSpeed * _delta
+		springs[i].waterUpdate(k, d, time)
+		springs[i].updateSpeed(wave_speed)
 		if springs[i].global_position.x < global_position.x - distanceBetweenSprings * 2:
 			var spring_to_remove = springs[i]
 			if spring_to_remove.has_signal("splash") and spring_to_remove.splash.is_connected(splash):
@@ -73,7 +78,7 @@ func _physics_process(_delta):
 		for spring in springs:
 			if is_instance_valid(spring) and spring.global_position.x > rightmost_x:
 				rightmost_x = spring.global_position.x
-		var screen_right = global_position.x + get_viewport().get_visible_rect().size.x + distanceBetweenSprings
+		var screen_right = global_position.x + get_viewport_rect().size.x + distanceBetweenSprings
 		while rightmost_x < screen_right:
 			rightmost_x += distanceBetweenSprings
 			spawn_spring(rightmost_x, nextSpringIndex)
@@ -88,21 +93,20 @@ func _physics_process(_delta):
 	for i in range(springs.size()):
 		leftDeltas.append(0)
 		rightDeltas.append(0)
-	
+				
 	for j in range(passes):
-		for i in range(springs.size()):
-			if i > 0 and is_instance_valid(springs[i]) and is_instance_valid(springs[i-1]):
-				leftDeltas[i] = spread * ((springs[i].global_position.y - springs[i - 1].global_position.y) - (springs[i].offset - springs[i - 1].offset))
-				springs[i - 1].velocity += leftDeltas[i]
-			if i < springs.size() - 1 and is_instance_valid(springs[i]) and is_instance_valid(springs[i+1]):
-				rightDeltas[i] = spread * ((springs[i].global_position.y - springs[i + 1].global_position.y) - (springs[i].offset - springs[i + 1].offset))
-				springs[i + 1].velocity += rightDeltas[i]
+		for i in range(springs.size() - 1, 0, -1,):
+			if is_instance_valid(springs[i]) and is_instance_valid(springs[i - 1]):
+				var transfer = springs[i].velocity * spread
+				springs[i - 1].velocity += transfer
+				springs[i].velocity -= transfer * 1.2
+
 	
 	update_visuals()
 
 func update_visuals():
 	new_border()
-	draw_water_body(bottom, Vector2(1.0, 1.0))
+	draw_water_body(Vector2(1.0, 1.0))
 
 func splash(index, speed):
 	for i in range(springs.size()):
@@ -110,7 +114,7 @@ func splash(index, speed):
 			springs[i].velocity += speed
 			break
 
-func draw_water_body(bottom, uv_scale) -> void:
+func draw_water_body(uv_scale) -> void:
 	if waterBorder.curve == null:
 		return
 	var curve = waterBorder.curve
@@ -147,3 +151,8 @@ func new_border():
 	waterBorder.curve = curve
 	waterBorder.smooth(true)
 	waterBorder.queue_redraw()
+	
+func get_wave_y(x: float,) -> float:
+	var springConstant = TAU / wave_length
+	var omega = wave_speed * springConstant
+	return sin(springConstant * x - omega * time) * wave_amplitude
