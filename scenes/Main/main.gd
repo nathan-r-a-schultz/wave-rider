@@ -57,7 +57,7 @@ func _process(_delta):
 				shaken = true
 			scrollSpeed = 0.0
 			Global.setScrollSpeed(scrollSpeed)
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(2.0).timeout
 			_transitionToGameOver()
 	else:
 		totalScroll += scrollSpeed * _delta * distanceMultiplier
@@ -72,4 +72,5 @@ func _transitionToGameOver():
 	coinTimer.paused = true
 	deathTriggerTimer.paused = true
 	Global.totalCoins += Global.currentCoins
+	Global.goToScene("res://scenes/GameOver/GameOver.tscn")
 	
