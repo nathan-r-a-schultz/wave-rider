@@ -26,13 +26,21 @@ window/size/viewport_width=320
 window/size/viewport_height=180
 window/size/mode=2
 window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [dotnet]
 
 project/assembly_name="Wave Rider"
 
+[physics]
+
+2d/run_on_separate_thread=true
+2d/physics_engine="GodotPhysics2D"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+shader_compiler/shader_cache/enabled=false
 lightmapping/stretch/mode="viewport"

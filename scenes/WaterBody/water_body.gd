@@ -10,7 +10,7 @@ extends Node2D
 @export var wave_length: float = 180.0
 @export var wave_speed: float = 200.0
 
-@onready var waterSpring = preload("res://Scenes/WaterBody/water_spring.tscn")
+@onready var waterSpring = preload("res://scenes/WaterBody/water_spring.tscn")
 @onready var waterPolygon = $WaterPolygon
 @onready var waterBorder = $WaterBorder
 

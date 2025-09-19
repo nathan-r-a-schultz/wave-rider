@@ -69,6 +69,7 @@ expand_mode = 1
 
 [node name="Water" type="Node2D" parent="Background"]
 z_as_relative = false
+texture_filter = 1
 position = Vector2(-16, 0)
 script = ExtResource("5_mhitv")
 
@@ -94,7 +95,6 @@ script = ExtResource("1_1rn58")
 metadata/_edit_use_anchors_ = true
 
 [node name="VersionInfo" type="RichTextLabel" parent="Control"]
-visible = false
 z_index = 20
 z_as_relative = false
 texture_filter = 1
