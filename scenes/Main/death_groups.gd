@@ -33,7 +33,9 @@ func _process(delta):
 		
 		currentTrigger.position.x -= main.scrollSpeed * delta
 		
-		if currentTrigger.position.x + (triggerSize.x) < 0:
+		print(get_viewport_rect().size)
+		
+		if currentTrigger.position.x + (triggerSize.x) < -((get_viewport_rect().size.x - 320) / 2):
 			currentTrigger.queue_free()
 			activeTriggers.remove_at(triggerIndex)
 		

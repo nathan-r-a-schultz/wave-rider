@@ -7,7 +7,8 @@ var rng = RandomNumberGenerator.new()
 var shakeStrength: float = 0.0
 
 func _ready():
-	get_parent().shakeCamera.connect(_applyShake)
+	if (get_parent().name == "Main"):
+		get_parent().shakeCamera.connect(_applyShake)
 
 func _applyShake():
 	shakeStrength = randomStrength

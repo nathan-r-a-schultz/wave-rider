@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=12 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
+[ext_resource type="Script" uid="uid://dantprk21f8vv" path="res://scenes/Main/camera_2d.gd" id="1_mhitv"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="4_c6vk0"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="5_c6vk0"]
@@ -13,9 +14,15 @@
 
 [node name="TitleScreen" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+script = ExtResource("1_mhitv")
+
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Sky" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(320, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1
@@ -24,6 +31,8 @@ position = Vector2(160, 28)
 texture = ExtResource("4_c6vk0")
 
 [node name="Grass" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(320, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
 z_index = -1
@@ -35,6 +44,7 @@ centered = false
 
 [node name="Beach" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
 z_index = -1
@@ -70,19 +80,19 @@ expand_mode = 1
 [node name="Water" type="Node2D" parent="Background"]
 z_as_relative = false
 texture_filter = 1
-position = Vector2(-16, 0)
+position = Vector2(-336, 0)
 script = ExtResource("5_mhitv")
 
 [node name="RearLayer" parent="Background/Water" instance=ExtResource("6_y56is")]
 z_as_relative = false
 position = Vector2(0, 90)
-springNumber = 16
+springNumber = 24
 
 [node name="FrontLayer" parent="Background/Water" instance=ExtResource("6_y56is")]
 z_index = 12
 z_as_relative = false
 position = Vector2(0, 90)
-springNumber = 16
+springNumber = 24
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -95,6 +105,7 @@ script = ExtResource("1_1rn58")
 metadata/_edit_use_anchors_ = true
 
 [node name="VersionInfo" type="RichTextLabel" parent="Control"]
+visible = false
 z_index = 20
 z_as_relative = false
 texture_filter = 1

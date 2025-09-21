@@ -41,7 +41,6 @@ func _process(_delta):
 	elif not main.get_node("Jetski").isAlive and $Beach.autoscroll[0] < -(main.scrollSpeed * 0.4):
 		$Beach.autoscroll[0] += (main.scrollSpeed * _delta)
 		
-		
 	if Global.titleInfo[0] != -1:
 		radToTransparency += PI * _delta
 		$StartInfo.modulate = Color(1, 1, 1, (sin(radToTransparency) + 1) / 2)
@@ -49,7 +48,7 @@ func _process(_delta):
 		$Logo.position.x -= 2 * main.scrollSpeed * _delta
 		$StartInfo.position.x -= 2 * main.scrollSpeed * _delta
 		
-		if $Logo.position.x <=  -$Logo.size.x:
+		if $Logo.position.x <= -$Logo.size.x + -((get_viewport_rect().size.x - 320) / 2):
 			$Logo.queue_free()
 			$StartInfo.queue_free()
 			Global.titleInfo = [-1]
