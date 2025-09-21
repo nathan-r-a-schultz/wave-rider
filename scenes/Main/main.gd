@@ -12,6 +12,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var totalScroll := 0.0
 var distanceMultiplier := 25
 var shaken = false
+var freezeFrame = false
 
 func _ready():
 	
@@ -48,6 +49,16 @@ func _process(_delta):
 	
 	if $Jetski.isAlive == false:
 		
+		if freezeFrame == false:
+		
+			get_tree().paused = true
+			flashScreen(Color(1, 1, 1), 0.1)
+			var timer = get_tree().create_timer(0.1, true)
+			await timer.timeout
+			get_tree().paused = false
+			
+			freezeFrame = true
+		
 		if (scrollSpeed > 0.0 and $Jetski.position.y < get_viewport_rect().size.y - 9):
 			scrollSpeed -= 33.33 * _delta
 			Global.setScrollSpeed(scrollSpeed)
@@ -73,4 +84,21 @@ func _transitionToGameOver():
 	deathTriggerTimer.paused = true
 	Global.totalCoins += Global.currentCoins
 	Global.goToScene("res://scenes/GameOver/GameOver.tscn")
+	
+func flashScreen(color, duration):
+	var flash = ColorRect.new()
+	flash.color = color
+	flash.visible = true
+	flash.modulate.a = 0.8
+	flash.size = get_viewport_rect().size
+	flash.anchor_left = 0.0
+	flash.anchor_top = 0.0
+	flash.anchor_right = 1.0
+	flash.anchor_bottom = 1.0
+	
+	add_child(flash)
+	
+	var tween = create_tween()
+	tween.tween_property(flash, "modulate:a", 0.0, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(Callable(flash, "queue_free"))
 	
