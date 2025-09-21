@@ -33,7 +33,7 @@ func _process(delta):
 		
 		currentCoin.position.x -= main.scrollSpeed * delta
 		
-		if currentCoin.position.x + (coinSize.x / 2) < -((get_viewport_rect().size.x - 320) / 2):
+		if currentCoin.position.x + (coinSize.x / 2) < (-(get_viewport_rect().size.x - 320) * 2):
 			currentCoin.queue_free()
 			activeCoins.remove_at(coinIndex)
 		

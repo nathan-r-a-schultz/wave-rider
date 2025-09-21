@@ -11,6 +11,12 @@ func _ready():
 	_on_coins_changed(Global.currentCoins)
 	_on_distance_changed(Global.distance)
 	
+	print(get_viewport_rect().size.x - 26)
+	
+	$CoinCounter.position.x = -((get_viewport_rect().size.x - 320) / 2) + 3
+	$DistanceLabel.position.x = -((get_viewport_rect().size.x - 320) / 2) + 3
+	$PauseButton.position.x = ((get_viewport_rect().size.x - 320) / 2) + 298
+	
 	await get_tree().create_timer(3.0).timeout
 	create_tween().tween_property(self, "modulate:a", 1.0, 1.0)
 	
