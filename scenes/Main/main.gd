@@ -91,8 +91,7 @@ func flashScreen(color, duration):
 	flash.visible = true
 	flash.modulate.a = 0.8
 	flash.size = get_viewport_rect().size
-	flash.anchor_left = 0.0
-	flash.anchor_top = 0.0
+	flash.position.x = -((get_viewport_rect().size.x - 320) / 2)
 	flash.anchor_right = 1.0
 	flash.anchor_bottom = 1.0
 	
