@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=14 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
 [ext_resource type="Script" uid="uid://dantprk21f8vv" path="res://scenes/Main/camera_2d.gd" id="1_mhitv"]
+[ext_resource type="Script" uid="uid://dbaj7pfnryiuu" path="res://scenes/TitleScreen/title_screen.gd" id="1_wgmwj"]
+[ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Main/background.gd" id="2_y56is"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
 [ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="4_c6vk0"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="5_c6vk0"]
@@ -13,12 +15,38 @@
 [ext_resource type="Script" uid="uid://rrjlujpv2g" path="res://scenes/TitleScreen/dummy_jetski.gd" id="10_u7spu"]
 
 [node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_wgmwj")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
 script = ExtResource("1_mhitv")
 
 [node name="Background" type="Node2D" parent="."]
+script = ExtResource("2_y56is")
+
+[node name="Logo" type="TextureRect" parent="Background"]
+z_index = 5
+texture_filter = 1
+offset_left = 83.0
+offset_top = 18.0
+offset_right = 237.0
+offset_bottom = 68.0
+texture = ExtResource("5_c6vk0")
+expand_mode = 1
+
+[node name="StartInfo" type="RichTextLabel" parent="Background"]
+z_index = 30
+texture_filter = 1
+offset_top = 135.0
+offset_right = 320.0
+offset_bottom = 149.0
+theme_override_colors/default_color = Color(1, 128.498, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_1rn58")
+theme_override_font_sizes/normal_font_size = 7
+theme_override_font_sizes/bold_font_size = 7
+text = "PRESS TO START"
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
@@ -66,16 +94,6 @@ position = Vector2(0, 111)
 texture = ExtResource("6_mhitv")
 centered = false
 
-[node name="Logo" type="TextureRect" parent="Background"]
-z_index = 5
-texture_filter = 1
-offset_left = 83.0
-offset_top = 18.0
-offset_right = 237.0
-offset_bottom = 68.0
-texture = ExtResource("5_c6vk0")
-expand_mode = 1
-
 [node name="Water" type="Node2D" parent="Background"]
 z_as_relative = false
 texture_filter = 1
@@ -118,21 +136,6 @@ theme_override_fonts/normal_font = ExtResource("3_1rn58")
 theme_override_font_sizes/normal_font_size = 7
 text = "Prototype v4/v5"
 
-[node name="StartInfo" type="RichTextLabel" parent="Control"]
-z_index = 30
-texture_filter = 1
-layout_mode = 0
-offset_top = 135.0
-offset_right = 320.0
-offset_bottom = 149.0
-theme_override_colors/default_color = Color(1, 128.498, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_1rn58")
-theme_override_font_sizes/normal_font_size = 7
-theme_override_font_sizes/bold_font_size = 7
-text = "PRESS TO START"
-scroll_active = false
-horizontal_alignment = 1
-
 [node name="StartButton" type="TextureButton" parent="Control"]
 z_index = 4096
 z_as_relative = false
@@ -142,17 +145,17 @@ offset_right = 320.0
 offset_bottom = 180.0
 stretch_mode = 0
 
-[node name="DummyJetski" type="CharacterBody2D" parent="."]
+[node name="Jetski" type="CharacterBody2D" parent="."]
 z_index = 1
 texture_filter = 1
 position = Vector2(79, 55)
 script = ExtResource("10_u7spu")
 
-[node name="Sprite2D" type="Sprite2D" parent="DummyJetski"]
+[node name="Sprite2D" type="Sprite2D" parent="Jetski"]
 texture_filter = 1
 texture = ExtResource("9_wgmwj")
 
-[node name="Hitbox" type="CollisionPolygon2D" parent="DummyJetski"]
+[node name="Hitbox" type="CollisionPolygon2D" parent="Jetski"]
 position = Vector2(-9, 12)
 scale = Vector2(1.17187, 0.782118)
 polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23.36, -12.9556, 19.0933, -4.00558, 3.73333, -4.00558, -7.36, -12.9556, -7.36, -20.6271, -3.94667, -20.6271, -2.24, -16.7914, 13.12, -16.7914)

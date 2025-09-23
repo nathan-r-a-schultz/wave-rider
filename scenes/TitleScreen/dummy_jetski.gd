@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 var rotation_speed := 3.0
 var max_rotation_angle := 15.0 
+var isAlive := false
 
 # physics yuh
 func _physics_process(delta):

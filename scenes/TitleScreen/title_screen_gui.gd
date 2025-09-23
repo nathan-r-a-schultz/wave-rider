@@ -7,15 +7,10 @@ var radToTransparency := PI / 2
 func _ready():
 	
 	$StartButton.pressed.connect(_on_start_button_pressed)
-	
-func _process(_delta):
-	
-	radToTransparency += PI * _delta
-	$StartInfo.modulate = Color(1, 1, 1, (sin(radToTransparency) + 1) / 2)
 
 func _on_start_button_pressed():
 	var titleScreen = get_parent()
-	Global.jetskiInfo = [titleScreen.get_node("DummyJetski").exportedPosition, titleScreen.get_node("DummyJetski").exportedVelocity]
+	Global.jetskiInfo = [titleScreen.get_node("Jetski").exportedPosition, titleScreen.get_node("Jetski").exportedVelocity]
 	Global.titleInfo = [radToTransparency]
 	Global.currentCoins = 0
 	Global.goToScene(gameScenePath)

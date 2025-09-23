@@ -3,7 +3,7 @@ extends Node
 var totalCoins: int
 var currentScene = null
 var jetskiInfo := [-1.0, -1.0]
-var titleInfo := [-1]
+var titleInfo := [1]
 var scrollSpeed := 0.0
 
 signal coins_changed(newCoins: int)
@@ -32,25 +32,20 @@ func goto_scene(path):
 	var oldScene = currentScene
 	var newScene = ResourceLoader.load(path)
 	
-	var waterNode = null
+	var background
 	if oldScene.name == "TitleScreen" and newScene.resource_path.get_file().get_basename() == "Main":
-		var titleBackground = oldScene.get_node("Background")
-		if titleBackground and titleBackground.has_node("Water"):
-			waterNode = titleBackground.get_node("Water")
-			titleBackground.remove_child(waterNode)
+		background = oldScene.get_node("Background")
+		background.get_parent().remove_child(background)
 	
 	var newSceneInstance = newScene.instantiate()
 
-	if waterNode:
-		var mainBackground = newSceneInstance.get_node("Background")
-		if mainBackground:
-			if mainBackground.has_node("Water"):
-				mainBackground.get_node("Water").queue_free()
-			mainBackground.add_child(waterNode)
+	if background:
+		newSceneInstance.add_child(background)
 	
 	currentScene = newSceneInstance
-	oldScene.queue_free()
 	get_tree().root.add_child(currentScene)
+	
+	oldScene.queue_free()
 	
 func setScrollSpeed(newScrollSpeed: float):
 	self.scrollSpeed = newScrollSpeed

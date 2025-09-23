@@ -1,16 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhm3ap26ad055"]
+[gd_scene load_steps=16 format=3 uid="uid://dhm3ap26ad055"]
 
 [ext_resource type="Script" uid="uid://7tisbx1ucf0" path="res://scenes/Main/main.gd" id="1_d463r"]
-[ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="1_pkilc"]
-[ext_resource type="PackedScene" uid="uid://c6k6mwbbr5xrq" path="res://scenes/WaterBody/water_body.tscn" id="2_qi5dh"]
 [ext_resource type="Script" uid="uid://dantprk21f8vv" path="res://scenes/Main/camera_2d.gd" id="2_ymilf"]
 [ext_resource type="Script" uid="uid://bomcl5x8jmoqs" path="res://scenes/Main/jetski.gd" id="3_d463r"]
-[ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Main/background.gd" id="4_plsdc"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="4_q8kdv"]
-[ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="5_72nt1"]
-[ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="6_plsdc"]
 [ext_resource type="Script" uid="uid://cp1ptqbm6rktp" path="res://scenes/Main/coin.gd" id="7_exyxu"]
-[ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="7_iekte"]
 [ext_resource type="Texture2D" uid="uid://8llyas30vyxm" path="res://assets/coin.png" id="7_q8kdv"]
 [ext_resource type="Script" uid="uid://cp4nc301s8t1l" path="res://scenes/Main/coin_groups.gd" id="7_r0gd4"]
 [ext_resource type="Script" uid="uid://bvub3mbysm4ve" path="res://scenes/Main/main_gui.gd" id="8_gqpea"]
@@ -20,7 +14,6 @@
 [ext_resource type="Script" uid="uid://dkhlnay0d1h5u" path="res://scenes/Main/death_groups.gd" id="11_1jtt4"]
 [ext_resource type="Script" uid="uid://cr4vbu3eghay0" path="res://scenes/Main/debug_trigger.gd" id="11_gqpea"]
 [ext_resource type="Texture2D" uid="uid://d08tyr7nx05vo" path="res://assets/deathtrigger.png" id="11_yxg74"]
-[ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="16_iekte"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxg74"]
 size = Vector2(12, 12)
@@ -46,97 +39,6 @@ texture = ExtResource("4_q8kdv")
 position = Vector2(-9.375, 12.1328)
 scale = Vector2(1.17187, 0.782118)
 polygon = PackedVector2Array(13.9733, -27.02, 19.0933, -27.02, 23.36, -18.07, 23.36, -12.9556, 19.0933, -4.00558, 3.73333, -4.00558, -7.36, -12.9556, -7.36, -20.6271, -3.94667, -20.6271, -2.24, -16.7914, 13.12, -16.7914)
-
-[node name="Background" type="Node2D" parent="."]
-script = ExtResource("4_plsdc")
-
-[node name="Logo" type="TextureRect" parent="Background"]
-z_index = 100
-texture_filter = 1
-offset_left = 83.0
-offset_top = 18.0
-offset_right = 237.0
-offset_bottom = 68.0
-texture = ExtResource("16_iekte")
-expand_mode = 1
-
-[node name="StartInfo" type="RichTextLabel" parent="Background"]
-z_index = 30
-texture_filter = 1
-offset_top = 135.0
-offset_right = 320.0
-offset_bottom = 149.0
-theme_override_colors/default_color = Color(1, 128.498, 0, 1)
-theme_override_fonts/normal_font = ExtResource("9_vup2a")
-theme_override_font_sizes/normal_font_size = 7
-theme_override_font_sizes/bold_font_size = 7
-text = "PRESS TO START"
-scroll_active = false
-horizontal_alignment = 1
-
-[node name="Sky" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
-visible = false
-z_index = -1
-texture_filter = 1
-position = Vector2(160, 28)
-texture = ExtResource("5_72nt1")
-
-[node name="Grass" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
-z_index = -1
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(0, 56)
-texture = ExtResource("6_plsdc")
-centered = false
-
-[node name="Beach" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
-z_index = -1
-texture_filter = 1
-position = Vector2(0, 69)
-texture = ExtResource("7_iekte")
-centered = false
-
-[node name="Sprite2D2" type="Sprite2D" parent="Background/Beach"]
-z_index = -1
-texture_filter = 1
-position = Vector2(-1, 90)
-texture = ExtResource("7_iekte")
-centered = false
-
-[node name="Sprite2D3" type="Sprite2D" parent="Background/Beach"]
-z_index = -1
-texture_filter = 1
-position = Vector2(0, 111)
-texture = ExtResource("7_iekte")
-centered = false
-
-[node name="Water" type="Node2D" parent="Background"]
-z_as_relative = false
-position = Vector2(-16, 0)
-script = ExtResource("1_pkilc")
-
-[node name="RearLayer" parent="Background/Water" instance=ExtResource("2_qi5dh")]
-z_as_relative = false
-position = Vector2(0, 90)
-springNumber = 16
-
-[node name="FrontLayer" parent="Background/Water" instance=ExtResource("2_qi5dh")]
-z_index = 12
-z_as_relative = false
-position = Vector2(0, 90)
-springNumber = 16
 
 [node name="CoinGroups" type="Node2D" parent="."]
 z_index = 10

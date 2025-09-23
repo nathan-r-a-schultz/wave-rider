@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var main = get_parent()
-
 var radToTransparency := PI / 2
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var cloudSize: Vector2
@@ -24,6 +22,11 @@ func _ready():
 		$StartInfo.queue_free()
 
 func _process(_delta):
+	
+	var main = get_tree().root.get_child(0)
+	
+	if main.get_name() == "Global":
+		main = get_tree().root.get_child(1)
 	
 	# to anyone reading this code: these if statements are sooooo janky
 	# i have no idea why the parallax layers speed up at the same rate as the water but don't do that for slowing down
