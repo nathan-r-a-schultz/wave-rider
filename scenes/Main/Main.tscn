@@ -79,6 +79,7 @@ repeat_size = Vector2(320, 0)
 repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+visible = false
 z_index = -1
 texture_filter = 1
 position = Vector2(160, 28)

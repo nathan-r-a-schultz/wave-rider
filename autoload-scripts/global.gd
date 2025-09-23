@@ -57,3 +57,11 @@ func setScrollSpeed(newScrollSpeed: float):
 	
 func getScrollSpeed():
 	return(self.scrollSpeed)
+	
+func save():
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"total_coins" : totalCoins
+	}
+	return save_dict
