@@ -76,7 +76,7 @@ horizontal_alignment = 1
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-repeat_times = 5
+repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 visible = false

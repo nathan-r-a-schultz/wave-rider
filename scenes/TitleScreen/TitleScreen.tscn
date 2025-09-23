@@ -22,7 +22,6 @@ script = ExtResource("1_mhitv")
 
 [node name="Sky" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)
-repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1
