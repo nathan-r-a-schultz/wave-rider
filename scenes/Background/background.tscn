@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Background/background.gd" id="1_pxulu"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="2_n4vpf"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_hikit"]
-[ext_resource type="Texture2D" uid="uid://d1vo7gj4v6ehw" path="res://assets/blue.png" id="4_t2aqr"]
+[ext_resource type="Texture2D" uid="uid://oy18whlmrufc" path="res://assets/sky.png" id="4_pxulu"]
 [ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_o74i5"]
 [ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_5c4u4"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="7_2aat8"]
@@ -36,15 +36,14 @@ text = "PRESS TO START"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Sky" type="Parallax2D" parent="."]
-repeat_size = Vector2(640, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
-scale = Vector2(213.333, 56)
-texture = ExtResource("4_t2aqr")
+texture = ExtResource("4_pxulu")
 centered = false
+
+[node name="Sky" type="Parallax2D" parent="."]
+repeat_size = Vector2(640, 0)
 
 [node name="Sky2" type="Parallax2D" parent="."]
 repeat_size = Vector2(640, 0)
