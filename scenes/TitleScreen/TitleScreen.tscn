@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://dbaj7pfnryiuu" path="res://scenes/TitleScreen/title_screen.gd" id="1_wgmwj"]
 [ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Main/background.gd" id="2_y56is"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
-[ext_resource type="Texture2D" uid="uid://c4sjmmnj8npuu" path="res://assets/sky-bg.png" id="4_c6vk0"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="5_c6vk0"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="5_mhitv"]
 [ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_u7spu"]
 [ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_mhitv"]
+[ext_resource type="Texture2D" uid="uid://d1vo7gj4v6ehw" path="res://assets/blue.png" id="6_wgmwj"]
 [ext_resource type="PackedScene" uid="uid://c6k6mwbbr5xrq" path="res://scenes/WaterBody/water_body.tscn" id="6_y56is"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="9_wgmwj"]
 [ext_resource type="Script" uid="uid://rrjlujpv2g" path="res://scenes/TitleScreen/dummy_jetski.gd" id="10_u7spu"]
@@ -25,7 +25,7 @@ script = ExtResource("1_mhitv")
 script = ExtResource("2_y56is")
 
 [node name="Logo" type="TextureRect" parent="Background"]
-z_index = 5
+z_index = 50
 texture_filter = 1
 offset_left = 83.0
 offset_top = 18.0
@@ -49,13 +49,20 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="Sky" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(320, 0)
+repeat_size = Vector2(640, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 z_index = -1
 texture_filter = 1
-position = Vector2(160, 28)
-texture = ExtResource("4_c6vk0")
+scale = Vector2(213.333, 56)
+texture = ExtResource("6_wgmwj")
+centered = false
+
+[node name="Sky2" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(640, 0)
+
+[node name="Sky3" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(640, 0)
 
 [node name="Grass" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(320, 0)

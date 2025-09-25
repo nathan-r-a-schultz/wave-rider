@@ -7,7 +7,19 @@ var activeClouds: Array[TextureRect] = []
 var cloudScrollAccum := 0.0
 var cloudSpacing := 100
 
+@onready var layers: Array[Array] = [
+	[0.2, $Sky as Parallax2D],
+	[0.225, $Sky2 as Parallax2D],
+	[0.25, $Sky3 as Parallax2D],
+	[0.3, $Grass as Parallax2D],
+	[0.4, $Beach as Parallax2D],
+]
+
 func _ready():
+	
+	for layer in layers:
+		layer[1].autoscroll = Vector2(0.0, 0.0)
+	
 	$Sky.autoscroll = Vector2(0.0, 0.0)
 	$Grass.autoscroll = Vector2(0.0, 0.0)
 	$Beach.autoscroll = Vector2(0.0, 0.0)
@@ -28,29 +40,13 @@ func _process(_delta):
 	if main.get_name() == "Global":
 		main = get_tree().root.get_child(1)
 	
-	# to anyone reading this code: these if statements are sooooo janky
-	# i have no idea why the parallax layers speed up at the same rate as the water but don't do that for slowing down
-	# luckily i've fixed it with this wacky solution
-	if $Sky.autoscroll[0] > -(main.scrollSpeed * 0.2) and main.get_node("Jetski").isAlive:
-		$Sky.autoscroll[0] -= main.scrollSpeed * _delta
-	elif main.scrollSpeed == 0:
-		$Sky.autoscroll[0] = 0
-	elif not main.get_node("Jetski").isAlive and $Sky.autoscroll[0] < -(main.scrollSpeed * 0.2):
-		$Sky.autoscroll[0] += (main.scrollSpeed * _delta)
-
-	if $Grass.autoscroll[0] > -(main.scrollSpeed * 0.3) and main.get_node("Jetski").isAlive:
-		$Grass.autoscroll[0] -= main.scrollSpeed * _delta
-	elif main.scrollSpeed == 0:
-		$Grass.autoscroll[0] = 0
-	elif not main.get_node("Jetski").isAlive and $Grass.autoscroll[0] < -(main.scrollSpeed * 0.3):
-		$Grass.autoscroll[0] += (main.scrollSpeed * _delta)
-
-	if $Beach.autoscroll[0] > -(main.scrollSpeed * 0.4) and main.get_node("Jetski").isAlive:
-		$Beach.autoscroll[0] -= main.scrollSpeed * _delta
-	elif main.scrollSpeed == 0:
-		$Beach.autoscroll[0] = 0
-	elif not main.get_node("Jetski").isAlive and $Beach.autoscroll[0] < -(main.scrollSpeed * 0.4):
-		$Beach.autoscroll[0] += (main.scrollSpeed * _delta)
+	for layer in layers:
+		if layer[1].autoscroll[0] > -(main.scrollSpeed * layer[0]) and main.get_node("Jetski").isAlive:
+			layer[1].autoscroll[0] -= main.scrollSpeed * _delta
+		elif main.scrollSpeed == 0:
+			layer[1].autoscroll[0] = 0
+		elif not main.get_node("Jetski").isAlive and layer[1].autoscroll[0] < -(main.scrollSpeed * layer[0]):
+			layer[1].autoscroll[0] += (main.scrollSpeed * _delta)
 		
 	if Global.titleInfo[0] != -1:
 		radToTransparency += PI * _delta
@@ -66,7 +62,7 @@ func _process(_delta):
 	
 func initClouds():
 	
-	var numClouds = 2
+	var numClouds = 4
 	
 	for i in range(0, 3):
 		for j in range(numClouds):
@@ -74,10 +70,11 @@ func initClouds():
 			var cloudImage: int = rng.randi_range(1, 3)
 
 			var cloudInstance = TextureRect.new()
-			var xPos = int((get_viewport_rect().size.x / (numClouds + 1)) * (j + 1) - 18)
+			var xPos = int((get_viewport_rect().size.x * 2 / (numClouds + 1)) * (j) - 18)
 			var yPos = yPosition
 			cloudInstance.texture = load("res://assets/clouds/cloud" + str(cloudImage) + ".png")
 			cloudInstance.position = Vector2(xPos, yPos)
-			$Sky.add_child(cloudInstance)
-		numClouds += 1
+			
+			layers[i][1].add_child(cloudInstance)
+		numClouds += 2
 	
