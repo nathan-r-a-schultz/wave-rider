@@ -8,21 +8,17 @@ var cloudScrollAccum := 0.0
 var cloudSpacing := 100
 
 @onready var layers: Array[Array] = [
-	[0.2, $Sky as Parallax2D],
-	[0.225, $Sky2 as Parallax2D],
-	[0.25, $Sky3 as Parallax2D],
-	[0.3, $Grass as Parallax2D],
-	[0.4, $Beach as Parallax2D],
+	[0.3, $Sky as Parallax2D],
+	[0.4, $Sky2 as Parallax2D],
+	[0.5, $Sky3 as Parallax2D],
+	[0.6, $Grass as Parallax2D],
+	[0.8, $Beach as Parallax2D],
 ]
 
 func _ready():
 	
 	for layer in layers:
 		layer[1].autoscroll = Vector2(0.0, 0.0)
-	
-	$Sky.autoscroll = Vector2(0.0, 0.0)
-	$Grass.autoscroll = Vector2(0.0, 0.0)
-	$Beach.autoscroll = Vector2(0.0, 0.0)
 	
 	cloudSize = Vector2(36, 18)
 	initClouds()
@@ -47,6 +43,8 @@ func _process(_delta):
 			layer[1].autoscroll[0] = 0
 		elif not main.get_node("Jetski").isAlive and layer[1].autoscroll[0] < -(main.scrollSpeed * layer[0]):
 			layer[1].autoscroll[0] += (main.scrollSpeed * _delta)
+			
+		layer[1].autoscroll.x = round(layer[1].autoscroll.x)
 		
 	if Global.titleInfo[0] != -1:
 		radToTransparency += PI * _delta
@@ -66,14 +64,14 @@ func initClouds():
 	
 	for i in range(0, 3):
 		for j in range(numClouds):
-			var yPosition: int = i * 18 + 1
+			var yPosition: int = i * 9 + 10
 			var cloudImage: int = rng.randi_range(1, 3)
 
-			var cloudInstance = TextureRect.new()
+			var cloudInstance = Sprite2D.new()
 			var xPos = int((get_viewport_rect().size.x * 2 / (numClouds + 1)) * (j) - 18)
 			var yPos = yPosition
 			cloudInstance.texture = load("res://assets/clouds/cloud" + str(cloudImage) + ".png")
-			cloudInstance.position = Vector2(xPos, yPos)
+			cloudInstance.position = Vector2(xPos, yPos).floor()
 			
 			layers[i][1].add_child(cloudInstance)
 		numClouds += 2
