@@ -6,6 +6,7 @@ var triggerGenerator: DeathGroups
 
 signal shakeCamera()
 
+const BACKGROUND: PackedScene = preload("res://scenes/Background/background.tscn")
 var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -15,6 +16,9 @@ var shaken = false
 var freezeFrame = false
 
 func _ready():
+	
+	if !$Background:
+		add_child(BACKGROUND.instantiate())
 	
 	Global.currentCoins = 0
 	Global.distance = 0

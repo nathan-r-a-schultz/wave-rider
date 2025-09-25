@@ -5,6 +5,7 @@ var currentScene = null
 var jetskiInfo := [-1.0, -1.0]
 var titleInfo := [1]
 var scrollSpeed := 0.0
+var backgroundNode: Node2D
 
 signal coins_changed(newCoins: int)
 signal distance_changed(newDistance: float)
@@ -33,6 +34,7 @@ func goto_scene(path):
 	var newScene = ResourceLoader.load(path)
 	
 	var background
+	
 	if oldScene.name == "TitleScreen" and newScene.resource_path.get_file().get_basename() == "Main":
 		background = oldScene.get_node("Background")
 		background.get_parent().remove_child(background)

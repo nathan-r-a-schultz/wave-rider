@@ -1,16 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=8 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
 [ext_resource type="Script" uid="uid://dantprk21f8vv" path="res://scenes/Main/camera_2d.gd" id="1_mhitv"]
 [ext_resource type="Script" uid="uid://dbaj7pfnryiuu" path="res://scenes/TitleScreen/title_screen.gd" id="1_wgmwj"]
-[ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Main/background.gd" id="2_y56is"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
-[ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="5_c6vk0"]
-[ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="5_mhitv"]
-[ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_u7spu"]
-[ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_mhitv"]
-[ext_resource type="Texture2D" uid="uid://d1vo7gj4v6ehw" path="res://assets/blue.png" id="6_wgmwj"]
-[ext_resource type="PackedScene" uid="uid://c6k6mwbbr5xrq" path="res://scenes/WaterBody/water_body.tscn" id="6_y56is"]
+[ext_resource type="PackedScene" uid="uid://yn0fjsd72sks" path="res://scenes/Background/background.tscn" id="3_d07el"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="9_wgmwj"]
 [ext_resource type="Script" uid="uid://rrjlujpv2g" path="res://scenes/TitleScreen/dummy_jetski.gd" id="10_u7spu"]
 
@@ -21,102 +15,7 @@ script = ExtResource("1_wgmwj")
 position = Vector2(160, 90)
 script = ExtResource("1_mhitv")
 
-[node name="Background" type="Node2D" parent="."]
-script = ExtResource("2_y56is")
-
-[node name="Logo" type="TextureRect" parent="Background"]
-z_index = 50
-texture_filter = 1
-offset_left = 83.0
-offset_top = 18.0
-offset_right = 237.0
-offset_bottom = 68.0
-texture = ExtResource("5_c6vk0")
-expand_mode = 1
-
-[node name="StartInfo" type="RichTextLabel" parent="Background"]
-z_index = 30
-texture_filter = 1
-offset_top = 135.0
-offset_right = 320.0
-offset_bottom = 149.0
-theme_override_colors/default_color = Color(1, 128.498, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_1rn58")
-theme_override_font_sizes/normal_font_size = 7
-theme_override_font_sizes/bold_font_size = 7
-text = "PRESS TO START"
-scroll_active = false
-horizontal_alignment = 1
-
-[node name="Sky" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(640, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
-z_index = -1
-texture_filter = 1
-scale = Vector2(213.333, 56)
-texture = ExtResource("6_wgmwj")
-centered = false
-
-[node name="Sky2" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(640, 0)
-
-[node name="Sky3" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(640, 0)
-
-[node name="Grass" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
-z_index = -1
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(0, 56)
-texture = ExtResource("5_u7spu")
-centered = false
-
-[node name="Beach" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Beach"]
-z_index = -1
-texture_filter = 1
-position = Vector2(0, 69)
-texture = ExtResource("6_mhitv")
-centered = false
-
-[node name="Sprite2D2" type="Sprite2D" parent="Background/Beach"]
-z_index = -1
-texture_filter = 1
-position = Vector2(-1, 90)
-texture = ExtResource("6_mhitv")
-centered = false
-
-[node name="Sprite2D3" type="Sprite2D" parent="Background/Beach"]
-z_index = -1
-texture_filter = 1
-position = Vector2(0, 111)
-texture = ExtResource("6_mhitv")
-centered = false
-
-[node name="Water" type="Node2D" parent="Background"]
-z_as_relative = false
-texture_filter = 1
-position = Vector2(-336, 0)
-script = ExtResource("5_mhitv")
-
-[node name="RearLayer" parent="Background/Water" instance=ExtResource("6_y56is")]
-z_as_relative = false
-position = Vector2(0, 90)
-springNumber = 24
-
-[node name="FrontLayer" parent="Background/Water" instance=ExtResource("6_y56is")]
-z_index = 12
-z_as_relative = false
-position = Vector2(0, 90)
-springNumber = 24
+[node name="Background" parent="." instance=ExtResource("3_d07el")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
