@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c6k6mwbbr5xrq" path="res://scenes/WaterBody/water_body.tscn" id="8_ov45e"]
 
 [node name="Background" type="Node2D"]
-visible = false
 script = ExtResource("1_pxulu")
 
 [node name="Logo" type="TextureRect" parent="."]
@@ -43,6 +42,7 @@ texture_filter = 1
 offset_left = -319.0
 offset_right = 960.0
 offset_bottom = 56.0
+mouse_filter = 2
 texture = ExtResource("4_pxulu")
 stretch_mode = 1
 

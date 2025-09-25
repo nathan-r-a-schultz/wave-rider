@@ -17,7 +17,7 @@ var freezeFrame = false
 
 func _ready():
 	
-	if !$Background:
+	if get_node_or_null("Background") == null:
 		add_child(BACKGROUND.instantiate())
 	
 	Global.currentCoins = 0
