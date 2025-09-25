@@ -68,7 +68,7 @@ func initClouds():
 			var cloudImage: int = rng.randi_range(1, 3)
 
 			var cloudInstance = Sprite2D.new()
-			var xPos = round((layers[i][1].repeat_size.x / numClouds) * j)
+			var xPos = round((layers[i][1].repeat_size.x / numClouds) * j) - 180
 			var yPos = yPosition
 			cloudInstance.texture = load("res://assets/clouds/cloud" + str(cloudImage) + ".png")
 			cloudInstance.position = Vector2(xPos, yPos).floor()

@@ -63,6 +63,14 @@ position = Vector2(0, 56)
 texture = ExtResource("5_o74i5")
 centered = false
 
+[node name="Sprite2D2" type="Sprite2D" parent="Grass"]
+z_index = -1
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, 62)
+texture = ExtResource("5_o74i5")
+centered = false
+
 [node name="Beach" type="Parallax2D" parent="."]
 repeat_size = Vector2(320, 0)
 repeat_times = 3
@@ -70,21 +78,21 @@ repeat_times = 3
 [node name="Sprite2D" type="Sprite2D" parent="Beach"]
 z_index = -1
 texture_filter = 1
-position = Vector2(0, 69)
+position = Vector2(-1, 117)
 texture = ExtResource("6_5c4u4")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Beach"]
 z_index = -1
 texture_filter = 1
-position = Vector2(-1, 90)
+position = Vector2(-1, 75)
 texture = ExtResource("6_5c4u4")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="Beach"]
 z_index = -1
 texture_filter = 1
-position = Vector2(0, 111)
+position = Vector2(-2, 96)
 texture = ExtResource("6_5c4u4")
 centered = false
 
