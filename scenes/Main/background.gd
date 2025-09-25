@@ -60,7 +60,7 @@ func _process(_delta):
 	
 func initClouds():
 	
-	var numClouds = 4
+	var numClouds = 6
 	
 	for i in range(0, 3):
 		for j in range(numClouds):
@@ -68,11 +68,11 @@ func initClouds():
 			var cloudImage: int = rng.randi_range(1, 3)
 
 			var cloudInstance = Sprite2D.new()
-			var xPos = int((get_viewport_rect().size.x * 2 / (numClouds + 1)) * (j) - 18)
+			var xPos = round((layers[i][1].repeat_size.x / numClouds) * j)
 			var yPos = yPosition
 			cloudInstance.texture = load("res://assets/clouds/cloud" + str(cloudImage) + ".png")
 			cloudInstance.position = Vector2(xPos, yPos).floor()
 			
 			layers[i][1].add_child(cloudInstance)
-		numClouds += 2
+		numClouds += i + 1
 	
