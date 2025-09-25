@@ -16,6 +16,7 @@ position = Vector2(160, 90)
 script = ExtResource("1_mhitv")
 
 [node name="Background" parent="." instance=ExtResource("3_d07el")]
+visible = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

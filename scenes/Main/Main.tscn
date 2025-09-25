@@ -92,6 +92,7 @@ bbcode_enabled = true
 
 [node name="PauseButton" type="TextureButton" parent="GUI"]
 process_mode = 3
+z_index = 2000
 texture_filter = 1
 layout_mode = 0
 offset_left = 298.0
