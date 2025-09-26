@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://yn0fjsd72sks"]
+[gd_scene load_steps=10 format=3 uid="uid://yn0fjsd72sks"]
 
 [ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Background/background.gd" id="1_pxulu"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="2_n4vpf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://oy18whlmrufc" path="res://assets/sky.png" id="4_pxulu"]
 [ext_resource type="Texture2D" uid="uid://dht85orwv2xdj" path="res://assets/grass-bg.png" id="5_o74i5"]
 [ext_resource type="Texture2D" uid="uid://cle4hlf0kinru" path="res://assets/beach-bg.png" id="6_5c4u4"]
+[ext_resource type="Texture2D" uid="uid://c0vp1l6mmuib8" path="res://assets/sand.png" id="6_n4vpf"]
 [ext_resource type="Script" uid="uid://c3qxqx1qtbg3m" path="res://scenes/Main/water.gd" id="7_2aat8"]
 [ext_resource type="PackedScene" uid="uid://c6k6mwbbr5xrq" path="res://scenes/WaterBody/water_body.tscn" id="8_ov45e"]
 
@@ -71,22 +72,23 @@ centered = false
 z_index = -1
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(0, 62)
+position = Vector2(0, 69)
 texture = ExtResource("5_o74i5")
 centered = false
 
 [node name="Beach" type="Parallax2D" parent="."]
-repeat_size = Vector2(320, 0)
-repeat_times = 3
+repeat_size = Vector2(630, 0)
+repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Beach"]
 z_index = -1
 texture_filter = 1
-position = Vector2(-1, 117)
-texture = ExtResource("6_5c4u4")
+position = Vector2(0, 75)
+texture = ExtResource("6_n4vpf")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Beach"]
+visible = false
 z_index = -1
 texture_filter = 1
 position = Vector2(-1, 75)
@@ -94,6 +96,7 @@ texture = ExtResource("6_5c4u4")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="Beach"]
+visible = false
 z_index = -1
 texture_filter = 1
 position = Vector2(-2, 96)

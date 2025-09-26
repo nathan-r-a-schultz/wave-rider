@@ -8,10 +8,10 @@ var cloudScrollAccum := 0.0
 var cloudSpacing := 100
 
 @onready var layers: Array[Array] = [
-	[0.3, $Sky as Parallax2D],
-	[0.4, $Sky2 as Parallax2D],
-	[0.5, $Sky3 as Parallax2D],
-	[0.6, $Grass as Parallax2D],
+	[0.1, $Sky as Parallax2D],
+	[0.2, $Sky2 as Parallax2D],
+	[0.3, $Sky3 as Parallax2D],
+	[0.4, $Grass as Parallax2D],
 	[0.8, $Beach as Parallax2D],
 ]
 
