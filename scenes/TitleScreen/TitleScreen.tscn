@@ -16,7 +16,6 @@ position = Vector2(160, 90)
 script = ExtResource("1_mhitv")
 
 [node name="Background" parent="." instance=ExtResource("3_d07el")]
-visible = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -48,7 +47,8 @@ z_index = 4096
 z_as_relative = false
 texture_filter = 1
 layout_mode = 1
-offset_right = 320.0
+offset_left = -185.0
+offset_right = 496.0
 offset_bottom = 180.0
 stretch_mode = 0
 
