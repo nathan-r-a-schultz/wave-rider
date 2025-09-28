@@ -27,8 +27,7 @@ grow_vertical = 2
 script = ExtResource("1_1rn58")
 metadata/_edit_use_anchors_ = true
 
-[node name="VersionInfo" type="RichTextLabel" parent="Control"]
-visible = false
+[node name="Credit" type="RichTextLabel" parent="Control"]
 z_index = 20
 z_as_relative = false
 texture_filter = 1
@@ -40,7 +39,7 @@ offset_bottom = 222.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_1rn58")
 theme_override_font_sizes/normal_font_size = 7
-text = "Prototype v4/v5"
+text = "By Nathan Schultz"
 
 [node name="StartButton" type="TextureButton" parent="Control"]
 z_index = 4096
