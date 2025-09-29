@@ -36,13 +36,18 @@ func _process(_delta):
 	if main.get_name() == "Global":
 		main = get_tree().root.get_child(1)
 	
+	var jetski = main.get_node_or_null("Jetski")
+	var isAlive = true
+	if jetski != null:
+		isAlive = jetski.isAlive
+	
 	for layer in layers:
-		if layer[1].autoscroll[0] > -(main.scrollSpeed * layer[0]) and main.get_node("Jetski").isAlive:
-			layer[1].autoscroll[0] -= main.scrollSpeed * _delta
-		elif main.scrollSpeed == 0:
+		if layer[1].autoscroll[0] > -(Global.scrollSpeed * layer[0]) and main.get_node("Jetski").isAlive:
+			layer[1].autoscroll[0] -= Global.scrollSpeed * _delta
+		elif Global.scrollSpeed == 0:
 			layer[1].autoscroll[0] = 0
-		elif not main.get_node("Jetski").isAlive and layer[1].autoscroll[0] < -(main.scrollSpeed * layer[0]):
-			layer[1].autoscroll[0] += (main.scrollSpeed * _delta)
+		elif not isAlive and layer[1].autoscroll[0] < -(Global.scrollSpeed * layer[0]):
+			layer[1].autoscroll[0] += (Global.scrollSpeed * _delta)
 			
 		layer[1].autoscroll.x = round(layer[1].autoscroll.x)
 		
@@ -50,8 +55,8 @@ func _process(_delta):
 		radToTransparency += PI * _delta
 		$StartInfo.modulate = Color(1, 1, 1, (sin(radToTransparency) + 1) / 2)
 	
-		$Logo.position.x -= 2 * main.scrollSpeed * _delta
-		$StartInfo.position.x -= 2 * main.scrollSpeed * _delta
+		$Logo.position.x -= 2 * Global.scrollSpeed * _delta
+		$StartInfo.position.x -= 2 * Global.scrollSpeed * _delta
 		
 		if $Logo.position.x <= -$Logo.size.x + -((get_viewport_rect().size.x - 320) / 2):
 			$Logo.queue_free()
