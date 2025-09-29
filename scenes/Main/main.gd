@@ -14,6 +14,7 @@ var totalScroll := 0.0
 var distanceMultiplier := 25
 var shaken = false
 var freezeFrame = false
+var coinsAdded = false
 
 func _ready():
 	
@@ -86,7 +87,11 @@ func _transitionToGameOver():
 
 	coinTimer.paused = true
 	deathTriggerTimer.paused = true
-	Global.totalCoins += Global.currentCoins
+	
+	if not coinsAdded:
+		Global.totalCoins += Global.currentCoins
+		coinsAdded = true
+		
 	Global.goToScene("res://scenes/GameOver/GameOver.tscn")
 	
 func flashScreen(color, duration):
