@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://donqam037r4xd"]
+[gd_scene load_steps=7 format=3 uid="uid://donqam037r4xd"]
 
 [ext_resource type="Script" uid="uid://c21yqguvydi6e" path="res://scenes/TitleScreen/title_screen_gui.gd" id="1_1rn58"]
 [ext_resource type="Script" uid="uid://dantprk21f8vv" path="res://scenes/Main/camera_2d.gd" id="1_mhitv"]
 [ext_resource type="Script" uid="uid://dbaj7pfnryiuu" path="res://scenes/TitleScreen/title_screen.gd" id="1_wgmwj"]
-[ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_1rn58"]
 [ext_resource type="PackedScene" uid="uid://yn0fjsd72sks" path="res://scenes/Background/background.tscn" id="3_d07el"]
 [ext_resource type="Texture2D" uid="uid://ceg5eakuu0ilt" path="res://assets/jetski.png" id="9_wgmwj"]
 [ext_resource type="Script" uid="uid://rrjlujpv2g" path="res://scenes/TitleScreen/dummy_jetski.gd" id="10_u7spu"]
@@ -26,20 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1rn58")
 metadata/_edit_use_anchors_ = true
-
-[node name="Credit" type="RichTextLabel" parent="Control"]
-z_index = 20
-z_as_relative = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 3.0
-offset_top = 168.0
-offset_right = 100.0
-offset_bottom = 222.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_1rn58")
-theme_override_font_sizes/normal_font_size = 7
-text = "By Nathan Schultz"
 
 [node name="StartButton" type="TextureButton" parent="Control"]
 z_index = 4096

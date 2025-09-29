@@ -28,6 +28,7 @@ window/size/viewport_height=180
 window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 

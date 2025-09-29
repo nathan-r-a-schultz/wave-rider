@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://yn0fjsd72sks"]
+[gd_scene load_steps=11 format=3 uid="uid://yn0fjsd72sks"]
 
 [ext_resource type="Script" uid="uid://wga4gmjt0v7n" path="res://scenes/Background/background.gd" id="1_pxulu"]
+[ext_resource type="Script" uid="uid://dt8fjk3owpcm5" path="res://scenes/Background/ui.gd" id="2_hikit"]
 [ext_resource type="Texture2D" uid="uid://b6jq260f8ahhx" path="res://assets/logo.png" id="2_n4vpf"]
 [ext_resource type="FontFile" uid="uid://c071ukeci0smi" path="res://assets/OldSchoolAdventures-42j9.ttf" id="3_hikit"]
 [ext_resource type="Texture2D" uid="uid://oy18whlmrufc" path="res://assets/sky.png" id="4_pxulu"]
@@ -13,7 +14,14 @@
 [node name="Background" type="Node2D"]
 script = ExtResource("1_pxulu")
 
-[node name="Logo" type="TextureRect" parent="."]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_hikit")
+
+[node name="Logo" type="TextureRect" parent="UI"]
 z_index = 50
 texture_filter = 1
 offset_left = 83.0
@@ -23,7 +31,7 @@ offset_bottom = 68.0
 texture = ExtResource("2_n4vpf")
 expand_mode = 1
 
-[node name="StartInfo" type="RichTextLabel" parent="."]
+[node name="StartInfo" type="RichTextLabel" parent="UI"]
 z_index = 30
 texture_filter = 1
 offset_top = 135.0
@@ -36,6 +44,19 @@ theme_override_font_sizes/bold_font_size = 7
 text = "PRESS TO START"
 scroll_active = false
 horizontal_alignment = 1
+
+[node name="Credit" type="RichTextLabel" parent="UI"]
+z_index = 20
+z_as_relative = false
+texture_filter = 1
+offset_left = 3.0
+offset_top = 168.0
+offset_right = 100.0
+offset_bottom = 222.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_hikit")
+theme_override_font_sizes/normal_font_size = 7
+text = "By Nathan Schultz"
 
 [node name="Sky-BG" type="TextureRect" parent="."]
 z_index = -1
