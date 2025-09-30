@@ -7,6 +7,7 @@ var triggerGenerator: DeathGroups
 signal shakeCamera()
 
 const BACKGROUND: PackedScene = preload("res://scenes/Background/background.tscn")
+const GAME_OVER: PackedScene = preload("res://scenes/GameOver/GameOver.tscn")
 var coinTimer = Timer.new()
 var deathTriggerTimer = Timer.new()
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -92,7 +93,7 @@ func _transitionToGameOver():
 		Global.totalCoins += Global.currentCoins
 		coinsAdded = true
 		
-	Global.goToScene("res://scenes/GameOver/GameOver.tscn")
+	add_child(GAME_OVER.instantiate())
 	
 func flashScreen(color, duration):
 	var flash = ColorRect.new()
