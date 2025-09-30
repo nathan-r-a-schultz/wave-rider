@@ -6,6 +6,14 @@
 
 [node name="GameOver" type="Node2D"]
 
+[node name="TextureRect" type="ColorRect" parent="."]
+z_index = 999
+offset_left = 16.0
+offset_top = 54.0
+offset_right = 295.0
+offset_bottom = 122.0
+color = Color(0.878173, 0.929388, 0, 1)
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -17,20 +25,23 @@ script = ExtResource("1_51nbm")
 metadata/_edit_use_anchors_ = true
 
 [node name="RedoButton" type="TextureButton" parent="Control"]
+z_index = 1000
 texture_filter = 1
 layout_mode = 0
 offset_left = 18.0
-offset_top = 24.0
+offset_top = 56.0
 offset_right = 146.0
-offset_bottom = 152.0
+offset_bottom = 120.0
 texture_normal = ExtResource("1_kgfi2")
 stretch_mode = 0
 
 [node name="StatsDisplay" type="RichTextLabel" parent="Control"]
+z_index = 1000
 layout_mode = 0
 offset_left = 182.0
-offset_top = 26.0
-offset_right = 303.0
-offset_bottom = 149.0
+offset_top = 58.0
+offset_right = 274.0
+offset_bottom = 120.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_ppu1c")
 theme_override_font_sizes/normal_font_size = 7
