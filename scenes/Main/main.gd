@@ -13,9 +13,10 @@ var deathTriggerTimer = Timer.new()
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var totalScroll := 0.0
 var distanceMultiplier := 25
-var shaken = false
-var freezeFrame = false
-var coinsAdded = false
+var shaken := false
+var freezeFrame := false
+var coinsAdded := false
+var scrollGameOver := false
 
 func _ready():
 	
@@ -49,20 +50,17 @@ func _on_death_trigger_timer_timeout():
 	deathTriggerTimer.wait_time = rng.randf_range(2.5, 5.0)
 
 func _process(_delta):
-	
 	if (scrollSpeed < 100 and $Jetski.isAlive == true):
 		scrollSpeed += 33.33 * _delta
 	
 	if $Jetski.isAlive == false:
 		
 		if freezeFrame == false:
-		
 			get_tree().paused = true
 			flashScreen(Color(1, 1, 1), 0.1)
 			var timer = get_tree().create_timer(0.1, true)
 			await timer.timeout
 			get_tree().paused = false
-			
 			freezeFrame = true
 		
 		if (scrollSpeed > 0.0 and $Jetski.position.y < get_viewport_rect().size.y - 9):
@@ -72,20 +70,21 @@ func _process(_delta):
 			if shaken == false:
 				shakeCamera.emit()
 				shaken = true
-			scrollSpeed = 0.0
+				scrollSpeed = 0.0
 			Global.setScrollSpeed(scrollSpeed)
-			await get_tree().create_timer(2.0).timeout
-			_transitionToGameOver()
+			
+			if not scrollGameOver:
+				scrollGameOver = true
+				await get_tree().create_timer(2.0).timeout
+				_transitionToGameOver()
 	else:
 		totalScroll += scrollSpeed * _delta * distanceMultiplier
-		#scrollSpeed += int((scrollSpeed / 100)) * 0.01
 		Global.distance = int(totalScroll / 750)
-		#print("Scrollspeed: " + str(scrollSpeed) + "\nTotalscroll:" + str(totalScroll) + "\nDelta: " + str(_delta) + "\n-----------------")
 	
 	Global.setScrollSpeed(scrollSpeed)
+
 		
 func _transitionToGameOver():
-
 	coinTimer.paused = true
 	deathTriggerTimer.paused = true
 	
@@ -94,9 +93,27 @@ func _transitionToGameOver():
 		coinsAdded = true
 		
 	var gameOverWindow = GAME_OVER.instantiate()
-	gameOverWindow.global_position = Vector2(get_viewport_rect().size.x / 2 - 100, get_viewport_rect().size.y / 2 - 50)
-		
+	gameOverWindow.name = "GameOver"
+	gameOverWindow.global_position = Vector2(
+		get_viewport_rect().size.x + int(get_viewport_rect().size.x / 10),
+		get_viewport_rect().size.y / 2 - 50
+	)
 	add_child(gameOverWindow)
+	
+	var tween = create_tween()
+	tween.tween_property(
+		self,
+		"scrollSpeed",
+		200.0,
+		0.8
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		self,
+		"scrollSpeed",
+		0.0,
+		1.2
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 func flashScreen(color, duration):
 	var flash = ColorRect.new()
