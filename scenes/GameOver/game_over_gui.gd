@@ -9,6 +9,8 @@ func _ready():
 func _process(_delta):
 	var bbcodeText = "Coins: " + str(Global.currentCoins) + "\nTotal coins: " + str(Global.totalCoins) + "\nDistance: " + str(Global.distance)
 	$WindowUI/StatsDisplay.parse_bbcode(bbcodeText)
+	
+	self.position.x -= 2 * Global.scrollSpeed * _delta
 
 func _on_start_button_pressed():
 	Global.goToScene(gameScenePath)

@@ -49,7 +49,7 @@ func _on_death_trigger_timer_timeout():
 	triggerGenerator.spawnTriggers()
 	deathTriggerTimer.wait_time = rng.randf_range(2.5, 5.0)
 
-func _process(_delta):
+func _physics_process(_delta):
 	if (scrollSpeed < 100 and $Jetski.isAlive == true):
 		scrollSpeed += 33.33 * _delta
 	
@@ -95,8 +95,7 @@ func _transitionToGameOver():
 	var gameOverWindow = GAME_OVER.instantiate()
 	gameOverWindow.name = "GameOver"
 	
-	var startX = get_viewport_rect().size.x * 2
-	var targetX = get_viewport_rect().size.x / 2 - 100
+	var startX = get_viewport_rect().size.x * 2 + 150
 	var targetY = get_viewport_rect().size.y / 2 - 50
 	
 	gameOverWindow.global_position = Vector2(
@@ -106,26 +105,24 @@ func _transitionToGameOver():
 	add_child(gameOverWindow)
 	
 	var tween = create_tween()
-	tween.tween_property(
-		self,
-		"scrollSpeed",
+	tween.set_parallel(true)
+	tween.tween_method(
+		func(value): 
+			scrollSpeed = value
+			Global.setScrollSpeed(value),
+		scrollSpeed,
 		200.0,
 		1.6
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(
-		gameOverWindow,
-		"global_position:x",
-		targetX,
-		1.6
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	
-	tween.set_parallel(false)
-	tween.tween_property(
-		self,
-		"scrollSpeed",
+	tween.chain()
+	tween.tween_method(
+		func(value): 
+			scrollSpeed = value
+			Global.setScrollSpeed(value),
+		200.0,
 		0.0,
-		2.4
+		1.6
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 func flashScreen(color, duration):

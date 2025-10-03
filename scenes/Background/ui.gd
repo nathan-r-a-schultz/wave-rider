@@ -11,7 +11,7 @@ func _ready():
 		$StartInfo.queue_free()
 		$Credit.queue_free()
 
-func _process(_delta):
+func _physics_process(_delta):
 	
 	if Global.titleInfo[0] != -1:
 		radToTransparency += PI * _delta

@@ -22,24 +22,14 @@ func _ready():
 	cloudSize = Vector2(36, 18)
 	initClouds()
 
-func _process(_delta):
-	
-	var main = get_tree().root.get_child(0)
-	
-	if main.get_name() == "Global":
-		main = get_tree().root.get_child(1)
-	
-	var jetski = main.get_node_or_null("Jetski")
-	var isAlive = true
-	if jetski != null:
-		isAlive = jetski.isAlive
+func _physics_process(_delta):
 	
 	for layer in layers:
-		if layer[1].autoscroll[0] > -(Global.scrollSpeed * layer[0]) and isAlive:
+		if layer[1].autoscroll[0] > -(Global.scrollSpeed * layer[0]):
 			layer[1].autoscroll[0] -= Global.scrollSpeed * _delta
 		elif Global.scrollSpeed == 0:
 			layer[1].autoscroll[0] = 0
-		elif not isAlive and layer[1].autoscroll[0] < -(Global.scrollSpeed * layer[0]):
+		elif layer[1].autoscroll[0] < -(Global.scrollSpeed * layer[0]):
 			layer[1].autoscroll[0] += (Global.scrollSpeed * _delta)
 			
 		layer[1].autoscroll.x = round(layer[1].autoscroll.x)
