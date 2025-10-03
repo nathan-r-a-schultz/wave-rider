@@ -93,7 +93,10 @@ func _transitionToGameOver():
 		Global.totalCoins += Global.currentCoins
 		coinsAdded = true
 		
-	add_child(GAME_OVER.instantiate())
+	var gameOverWindow = GAME_OVER.instantiate()
+	gameOverWindow.global_position = Vector2(get_viewport_rect().size.x / 2 - 100, get_viewport_rect().size.y / 2 - 50)
+		
+	add_child(gameOverWindow)
 	
 func flashScreen(color, duration):
 	var flash = ColorRect.new()
