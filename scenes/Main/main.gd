@@ -94,9 +94,14 @@ func _transitionToGameOver():
 		
 	var gameOverWindow = GAME_OVER.instantiate()
 	gameOverWindow.name = "GameOver"
+	
+	var startX = get_viewport_rect().size.x * 2
+	var targetX = get_viewport_rect().size.x / 2 - 100
+	var targetY = get_viewport_rect().size.y / 2 - 50
+	
 	gameOverWindow.global_position = Vector2(
-		get_viewport_rect().size.x + int(get_viewport_rect().size.x / 10),
-		get_viewport_rect().size.y / 2 - 50
+		startX,
+		targetY,
 	)
 	add_child(gameOverWindow)
 	
@@ -105,14 +110,22 @@ func _transitionToGameOver():
 		self,
 		"scrollSpeed",
 		200.0,
-		0.8
+		1.6
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
+	
+	tween.tween_property(
+		gameOverWindow,
+		"global_position:x",
+		targetX,
+		1.6
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	tween.set_parallel(false)
 	tween.tween_property(
 		self,
 		"scrollSpeed",
 		0.0,
-		1.2
+		2.4
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 func flashScreen(color, duration):
