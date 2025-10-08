@@ -95,7 +95,7 @@ func _transitionToGameOver():
 	var gameOverWindow = GAME_OVER.instantiate()
 	gameOverWindow.name = "GameOver"
 	
-	var startX = get_viewport_rect().size.x
+	var startX = get_viewport_rect().size.x / 2 - 100
 	var targetY = get_viewport_rect().size.y / 2 - 50
 	
 	gameOverWindow.global_position = Vector2(

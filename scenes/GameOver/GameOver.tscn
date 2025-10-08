@@ -34,6 +34,7 @@ stretch_mode = 1
 
 [node name="Right-Outline" type="TextureRect" parent="Control/GameOverWindow"]
 z_index = 1000
+layout_mode = 0
 offset_left = 192.0
 offset_right = 200.0
 offset_bottom = 100.0
@@ -43,6 +44,7 @@ flip_h = true
 
 [node name="Top-Outline" type="TextureRect" parent="Control/GameOverWindow"]
 z_index = 1000
+layout_mode = 0
 offset_left = 200.0
 offset_right = 208.0
 offset_bottom = 200.0
@@ -52,6 +54,7 @@ stretch_mode = 1
 
 [node name="Bottom-Outline" type="TextureRect" parent="Control/GameOverWindow"]
 z_index = 1000
+layout_mode = 0
 offset_left = 200.0
 offset_top = 72.0
 offset_right = 208.0
@@ -64,6 +67,7 @@ flip_h = true
 [node name="BG" type="TextureRect" parent="Control/GameOverWindow"]
 z_index = 500
 texture_filter = 1
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
 texture = ExtResource("1_1kqld")
